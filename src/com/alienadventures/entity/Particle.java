@@ -1,5 +1,7 @@
 package com.alienadventures.entity;
 
+import com.alienadventures.Game;
+
 import java.awt.*;
 
 public class Particle extends GameObject {
@@ -12,6 +14,10 @@ public class Particle extends GameObject {
 	@Override
 	public void update() {
 		applyGravity();
+		if (y + height > Game.HEIGHT) {
+			vel.y *= -0.5;
+			y = Game.HEIGHT - height;
+		}
 	}
 
 	@Override
