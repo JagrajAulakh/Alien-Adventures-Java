@@ -1,6 +1,9 @@
 package com.alienadventures;
 
+import com.alienadventures.input.Input;
+
 import java.awt.*;
+import java.awt.event.KeyEvent;
 
 public class GameLogic {
 	private World world;
@@ -9,7 +12,9 @@ public class GameLogic {
 	}
 
 	public void update() {
-		System.out.println("HERE");
+		if (Input.keyUpOnce(KeyEvent.VK_ESCAPE)) {
+			System.exit(0);
+		}
 		world.update();
 	}
 

@@ -11,7 +11,7 @@ public class Particle extends GameObject {
 
 	@Override
 	public void update() {
-
+		applyGravity();
 	}
 
 	@Override

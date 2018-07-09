@@ -1,5 +1,7 @@
 package com.alienadventures;
 
+import com.alienadventures.input.Input;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferStrategy;
@@ -10,6 +12,7 @@ public class Game extends Canvas {
 	private GameLogic logic;
 	private JFrame frame;
 	private boolean running = true;
+	private Input input;
 
 	public Game() {
 		logic = new GameLogic();
@@ -17,6 +20,15 @@ public class Game extends Canvas {
 		Dimension d = new Dimension(WIDTH, HEIGHT);
 		setMinimumSize(d);
 		setPreferredSize(d);
+
+		input = new Input();
+		addKeyListener(input);
+		addMouseListener(input);
+		addMouseMotionListener(input);
+		addMouseWheelListener(input);
+
+		setFocusable(true);
+		requestFocus();
 
 		frame.add(this, BorderLayout.CENTER);
 		frame.pack();
@@ -40,6 +52,7 @@ public class Game extends Canvas {
 			lastTime = now;
 
 			while (delta >= 1) {
+				Input.update();
 				tick();
 				delta--;
 			}

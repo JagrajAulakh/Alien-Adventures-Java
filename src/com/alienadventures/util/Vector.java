@@ -1,7 +1,7 @@
 package com.alienadventures.util;
 
 public class Vector {
-	private double x, y;
+	public double x, y;
 
 	public Vector() {
 		this(0, 0);
@@ -12,19 +12,8 @@ public class Vector {
 		this.y = y;
 	}
 
-	public double getX() {
-		return x;
-	}
-
-	public double getY() {
-		return y;
-	}
-
-	public void setX(double x) {
+	public void set(double x, double y) {
 		this.x = x;
-	}
-
-	public void setY(double y) {
 		this.y = y;
 	}
 
