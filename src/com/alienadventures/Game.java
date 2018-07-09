@@ -1,5 +1,7 @@
 package com.alienadventures;
 
+import com.alienadventures.input.Input;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferStrategy;
@@ -10,16 +12,23 @@ public class Game extends Canvas {
 	private GameLogic logic;
 	private JFrame frame;
 	private boolean running = true;
+	private Input input;
 
 	public Game() {
 		logic = new GameLogic();
-		frame = new JFrame("Quad Tree");
+		frame = new JFrame("Alien Adventures");
 		Dimension d = new Dimension(WIDTH, HEIGHT);
 		setMinimumSize(d);
 		setPreferredSize(d);
 
-//		setFocusable(true);		// These two lines allow
-//		requestFocusInWindow();	// the key listener to work
+		input = new Input();
+		addKeyListener(input);
+		addMouseListener(input);
+		addMouseMotionListener(input);
+		addMouseWheelListener(input);
+
+		setFocusable(true);
+		requestFocus();
 
 		frame.add(this, BorderLayout.CENTER);
 		frame.pack();
@@ -43,6 +52,7 @@ public class Game extends Canvas {
 			lastTime = now;
 
 			while (delta >= 1) {
+				Input.update();
 				tick();
 				delta--;
 			}
