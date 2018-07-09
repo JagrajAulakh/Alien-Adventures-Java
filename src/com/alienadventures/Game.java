@@ -15,6 +15,9 @@ public class Game extends Canvas {
 	private Input input;
 
 	public Game() {
+		try {
+			Resources.load();
+		} catch (Exception e) { e.printStackTrace(); }
 		logic = new GameLogic();
 		frame = new JFrame("Alien Adventures");
 		Dimension d = new Dimension(WIDTH, HEIGHT);
