@@ -9,8 +9,8 @@ import java.io.IOException;
 public class LetterMaker {
 	public static final int SCALE = 5;
 	public static final int SPACE_LENGTH = 24;
-	private static int[] sizes = new int[26 + 10];
-	private static String letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+	private static String letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789.,?!:;'/()[]{}+-=_lr%*<>";
+	private static int[] sizes = new int[letters.length()];
 
 	public LetterMaker() {
 		for (int i = 0; i < sizes.length; i++) {
@@ -28,7 +28,6 @@ public class LetterMaker {
 	}
 
 	public static BufferedImage makeSentence(String sent) {
-		sent = sent.toUpperCase();
 		int width = 0;
 		for (char c : sent.toCharArray()) {
 			if (c == ' ') {
@@ -49,7 +48,7 @@ public class LetterMaker {
 				x += SPACE_LENGTH;
 			} else {
 				int px = letters.indexOf(letter) * 8;
-				BufferedImage letterImg = Resources.scale(Resources.fontSheet.getSubimage(px, 8, sizes[letters.indexOf(letter)]/SCALE, 8), SCALE);
+				BufferedImage letterImg = Resources.scale(Resources.fontSheet.getSubimage(px, 0, sizes[letters.indexOf(letter)]/SCALE, 8), SCALE);
 				g.drawImage(letterImg, x, 0, null);
 				x += sizes[letters.indexOf(letter)];
 			}
