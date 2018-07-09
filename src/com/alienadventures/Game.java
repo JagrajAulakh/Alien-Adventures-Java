@@ -13,13 +13,10 @@ public class Game extends Canvas {
 
 	public Game() {
 		logic = new GameLogic();
-		frame = new JFrame("Quad Tree");
+		frame = new JFrame("Alien Adventures");
 		Dimension d = new Dimension(WIDTH, HEIGHT);
 		setMinimumSize(d);
 		setPreferredSize(d);
-
-//		setFocusable(true);		// These two lines allow
-//		requestFocusInWindow();	// the key listener to work
 
 		frame.add(this, BorderLayout.CENTER);
 		frame.pack();
