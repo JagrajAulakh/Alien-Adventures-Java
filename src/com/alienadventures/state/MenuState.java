@@ -1,15 +1,18 @@
 package com.alienadventures.state;
 
 import com.alienadventures.Game;
+import com.alienadventures.entity.Particle;
 import com.alienadventures.input.Input;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
+import java.util.ArrayList;
 
 public class MenuState implements GameState {
 
+	private ArrayList<Particle> particles;
 	public MenuState() {
-
+		particles = new ArrayList<Particle>();
 	}
 
 	@Override
@@ -17,11 +20,25 @@ public class MenuState implements GameState {
 		if (Input.keyUpOnce(KeyEvent.VK_ESCAPE)) {
 			System.exit(0);
 		}
+		if (Input.mouseDown(0)) {
+			for (int i = 0; i < Math.random()*8+2; i++) {
+				particles.add(new Particle(Input.mx, Input.my));
+			}
+		}
+
+
+		for (Particle p:particles) {
+			p.update();
+		}
 	}
 
 	@Override
 	public void render(Graphics g) {
 		g.setColor(new Color(7954129));
 		g.fillRect(0, 0, Game.WIDTH, Game.HEIGHT);
+
+		for (Particle p:particles) {
+			p.render(g);
+		}
 	}
 }

@@ -9,20 +9,17 @@ public class Particle extends GameObject {
 		super(x, y);
 		setWidth(10);
 		setHeight(10);
+		setVel(Math.random()*10 - 5, Math.random()*-3-2);
 	}
 
 	@Override
 	public void update() {
-		applyGravity();
-		if (y + height > Game.HEIGHT) {
-			vel.y *= -0.5;
-			y = Game.HEIGHT - height;
-		}
+		applyGravity(0.2);
 	}
 
 	@Override
 	public void render(Graphics g) {
 		g.setColor(Color.GREEN);
-		g.fillRect((int)x, (int)y, (int)width, (int)height);
+		g.fillOval((int)x, (int)y, (int)width, (int)height);
 	}
 }

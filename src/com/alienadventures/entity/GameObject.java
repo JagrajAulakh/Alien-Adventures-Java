@@ -23,10 +23,14 @@ public abstract class GameObject {
 	public void setVelX(double x) { this.vel.x = x; }
 	public void setVelY(double y) { this.vel.y = y; }
 
-	protected void applyGravity() {
-		acc.set(0, World.GRAVITY);
+	protected void applyVel() {
+		vel.x += acc.x;
 		vel.y += acc.y;
-		y += vel.y;
+	}
+
+	protected void applyGravity() { applyGravity(1); }
+	protected void applyGravity(double factor) {
+		acc.set(0, World.GRAVITY*factor);
 	}
 
 	public abstract void update();
