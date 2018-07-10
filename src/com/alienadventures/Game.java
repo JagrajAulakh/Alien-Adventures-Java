@@ -2,9 +2,12 @@ package com.alienadventures;
 
 import com.alienadventures.input.Input;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferStrategy;
+import java.io.File;
+import java.io.IOException;
 
 public class Game extends Canvas {
 	public static final int WIDTH = 800;
@@ -20,6 +23,9 @@ public class Game extends Canvas {
 		} catch (Exception e) { e.printStackTrace(); }
 		logic = new GameLogic();
 		frame = new JFrame("Alien Adventures");
+		try {
+			frame.setIconImage(ImageIO.read(new File("images/icon.png")));
+		} catch (IOException e) { e.printStackTrace(); }
 		Dimension d = new Dimension(WIDTH, HEIGHT);
 		setMinimumSize(d);
 		setPreferredSize(d);

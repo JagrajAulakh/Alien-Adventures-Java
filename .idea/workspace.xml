@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e339dfba-21cb-4890-9cf2-af9f1a7ca4a2" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/src/com/alienadventures/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/alienadventures/Game.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/alienadventures/entity/GameObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/alienadventures/entity/GameObject.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/alienadventures/entity/Particle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/alienadventures/entity/Particle.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/alienadventures/state/MenuState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/alienadventures/state/MenuState.java" afterDir="false" />
@@ -16,15 +17,15 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Game.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Game.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/alienadventures/Game.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="88">
-              <caret line="16" column="19" lean-forward="true" selection-start-line="16" selection-start-column="19" selection-end-line="16" selection-end-column="19" />
+            <state relative-caret-position="242">
+              <caret line="26" column="31" selection-start-line="26" selection-start-column="31" selection-end-line="26" selection-end-column="31" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#1603#1604#0" expanded="true" />
-                <element signature="e#1624#1625#0" expanded="true" />
+                <element signature="e#1725#1726#0" expanded="true" />
+                <element signature="e#1746#1747#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -46,27 +47,12 @@
       <file leaf-file-name="MenuState.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/alienadventures/state/MenuState.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="500">
-              <caret line="30" column="23" selection-start-line="30" selection-start-column="23" selection-end-line="30" selection-end-column="23" />
+            <state relative-caret-position="236">
+              <caret line="30" column="54" selection-start-line="30" selection-start-column="54" selection-end-line="30" selection-end-column="54" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#341#342#0" expanded="true" />
                 <element signature="e#385#386#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="GameStateManager.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/alienadventures/state/GameStateManager.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="220">
-              <caret line="14" column="28" selection-start-line="14" selection-start-column="28" selection-end-line="14" selection-end-column="28" />
-              <folding>
-                <element signature="e#154#155#0" expanded="true" />
-                <element signature="e#192#193#0" expanded="true" />
-                <element signature="e#293#294#0" expanded="true" />
-                <element signature="e#318#319#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -111,39 +97,46 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Resources.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/alienadventures/Resources.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1034">
-              <caret line="53" column="39" selection-start-line="53" selection-start-column="39" selection-end-line="53" selection-end-column="39" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="Particle.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/alienadventures/entity/Particle.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="352">
-              <caret line="16" column="10" selection-start-line="16" selection-start-column="10" selection-end-line="16" selection-end-column="10" />
+            <state relative-caret-position="66">
+              <caret line="3" selection-start-line="3" selection-end-line="3" />
               <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#258#259#0" expanded="true" />
-                <element signature="e#282#283#0" expanded="true" />
+                <element signature="e#570#571#0" expanded="true" />
+                <element signature="e#593#594#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="GameObject.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="GameObject.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/alienadventures/entity/GameObject.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="434">
-              <caret line="32" column="41" selection-start-line="32" selection-start-column="41" selection-end-line="32" selection-end-column="41" />
+            <state relative-caret-position="306">
+              <caret line="29" column="19" lean-forward="true" selection-start-line="29" selection-start-column="19" selection-end-line="29" selection-end-column="19" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="e#862#863#0" expanded="true" />
+                <element signature="e#901#902#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="QuadTree.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/alienadventures/util/QuadTree.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="264">
+              <caret line="12" selection-start-line="12" selection-end-line="12" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#204#211#0" expanded="true" />
+                <element signature="e#262#263#0" expanded="true" />
+                <element signature="e#307#308#0" expanded="true" />
+                <element signature="e#336#337#0" expanded="true" />
+                <element signature="e#383#384#0" expanded="true" />
+                <element signature="e#2146#2153#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -167,6 +160,7 @@
       <find>class world</find>
       <find>HERE</find>
       <find>VK_ESC</find>
+      <find>p:particles</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -179,7 +173,6 @@
         <option value="$PROJECT_DIR$/src/com/alienadventures/util/Vector.java" />
         <option value="$PROJECT_DIR$/src/com/alienadventures/input/KeyInput.java" />
         <option value="$PROJECT_DIR$/src/com/alienadventures/input/Input.java" />
-        <option value="$PROJECT_DIR$/src/com/alienadventures/Game.java" />
         <option value="$PROJECT_DIR$/src/com/alienadventures/Resources.java" />
         <option value="$PROJECT_DIR$/src/com/alienadventures/state/GameState.java" />
         <option value="$PROJECT_DIR$/src/com/alienadventures/state/GameStateManager.java" />
@@ -187,9 +180,12 @@
         <option value="$PROJECT_DIR$/src/com/alienadventures/ui/LetterMaker.java" />
         <option value="$PROJECT_DIR$/src/com/alienadventures/World.java" />
         <option value="$PROJECT_DIR$/src/com/alienadventures/GameLogic.java" />
+        <option value="$PROJECT_DIR$/src/com/alienadventures/util/QuadTree.java" />
+        <option value="$PROJECT_DIR$/src/com/alienadventures/util/Point.java" />
+        <option value="$PROJECT_DIR$/src/com/alienadventures/entity/GameObject.java" />
         <option value="$PROJECT_DIR$/src/com/alienadventures/state/MenuState.java" />
         <option value="$PROJECT_DIR$/src/com/alienadventures/entity/Particle.java" />
-        <option value="$PROJECT_DIR$/src/com/alienadventures/entity/GameObject.java" />
+        <option value="$PROJECT_DIR$/src/com/alienadventures/Game.java" />
       </list>
     </option>
   </component>
@@ -264,6 +260,11 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$/assets" />
     <property name="settings.editor.selected.configurable" value="vcs.Git" />
   </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\juggy\Documents\Code\Java\Alien Adventures\src\com\alienadventures\util" />
+    </key>
+  </component>
   <component name="RunDashboard">
     <option name="ruleStates">
       <list>
@@ -324,7 +325,7 @@
       <window_info anchor="bottom" id="Terminal" order="7" />
       <window_info id="Capture Tool" order="2" />
       <window_info id="Designer" order="2" />
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.18456376" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.18456376" />
       <window_info anchor="bottom" id="Find" order="1" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -349,8 +350,8 @@
           <caret line="19" column="54" selection-start-line="19" selection-start-column="54" selection-end-line="19" selection-end-column="54" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#1603#1604#0" expanded="true" />
-            <element signature="e#1624#1625#0" expanded="true" />
+            <element signature="e#1725#1726#0" expanded="true" />
+            <element signature="e#1746#1747#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -434,9 +435,8 @@
         <state relative-caret-position="330">
           <caret line="17" column="24" selection-start-line="17" selection-start-column="24" selection-end-line="17" selection-end-column="25" />
           <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#258#259#0" expanded="true" />
-            <element signature="e#282#283#0" expanded="true" />
+            <element signature="e#570#571#0" expanded="true" />
+            <element signature="e#593#594#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -457,8 +457,8 @@
           <caret line="19" column="54" selection-start-line="19" selection-start-column="54" selection-end-line="19" selection-end-column="54" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#1603#1604#0" expanded="true" />
-            <element signature="e#1624#1625#0" expanded="true" />
+            <element signature="e#1725#1726#0" expanded="true" />
+            <element signature="e#1746#1747#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -538,9 +538,8 @@
         <state relative-caret-position="300">
           <caret line="17" column="24" selection-start-line="17" selection-start-column="24" selection-end-line="17" selection-end-column="25" />
           <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#258#259#0" expanded="true" />
-            <element signature="e#282#283#0" expanded="true" />
+            <element signature="e#570#571#0" expanded="true" />
+            <element signature="e#593#594#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -561,8 +560,8 @@
           <caret line="19" column="54" selection-start-line="19" selection-start-column="54" selection-end-line="19" selection-end-column="54" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#1603#1604#0" expanded="true" />
-            <element signature="e#1624#1625#0" expanded="true" />
+            <element signature="e#1725#1726#0" expanded="true" />
+            <element signature="e#1746#1747#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -645,9 +644,8 @@
         <state relative-caret-position="300">
           <caret line="17" column="24" selection-start-line="17" selection-start-column="24" selection-end-line="17" selection-end-column="25" />
           <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#258#259#0" expanded="true" />
-            <element signature="e#282#283#0" expanded="true" />
+            <element signature="e#570#571#0" expanded="true" />
+            <element signature="e#593#594#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -772,18 +770,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/alienadventures/Game.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="88">
-          <caret line="16" column="19" lean-forward="true" selection-start-line="16" selection-start-column="19" selection-end-line="16" selection-end-column="19" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1603#1604#0" expanded="true" />
-            <element signature="e#1624#1625#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/alienadventures/state/PlayState.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="456">
@@ -800,16 +786,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/alienadventures/World.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="478">
-          <caret line="36" column="22" selection-start-line="36" selection-start-column="22" selection-end-line="36" selection-end-column="22" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/alienadventures/GameLogic.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="352">
@@ -821,10 +797,51 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/alienadventures/util/Point.java">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/alienadventures/util/QuadTree.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="264">
+          <caret line="12" selection-start-line="12" selection-end-line="12" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#204#211#0" expanded="true" />
+            <element signature="e#262#263#0" expanded="true" />
+            <element signature="e#307#308#0" expanded="true" />
+            <element signature="e#336#337#0" expanded="true" />
+            <element signature="e#383#384#0" expanded="true" />
+            <element signature="e#2146#2153#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/alienadventures/World.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="478">
+          <caret line="36" column="22" selection-start-line="36" selection-start-column="22" selection-end-line="36" selection-end-column="22" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/alienadventures/entity/GameObject.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="29" column="19" lean-forward="true" selection-start-line="29" selection-start-column="19" selection-end-line="29" selection-end-column="19" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#862#863#0" expanded="true" />
+            <element signature="e#901#902#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/alienadventures/state/MenuState.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="500">
-          <caret line="30" column="23" selection-start-line="30" selection-start-column="23" selection-end-line="30" selection-end-column="23" />
+        <state relative-caret-position="236">
+          <caret line="30" column="54" selection-start-line="30" selection-start-column="54" selection-end-line="30" selection-end-column="54" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#341#342#0" expanded="true" />
@@ -835,22 +852,23 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/alienadventures/entity/Particle.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="352">
-          <caret line="16" column="10" selection-start-line="16" selection-start-column="10" selection-end-line="16" selection-end-column="10" />
+        <state relative-caret-position="66">
+          <caret line="3" selection-start-line="3" selection-end-line="3" />
           <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#258#259#0" expanded="true" />
-            <element signature="e#282#283#0" expanded="true" />
+            <element signature="e#570#571#0" expanded="true" />
+            <element signature="e#593#594#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/alienadventures/entity/GameObject.java">
+    <entry file="file://$PROJECT_DIR$/src/com/alienadventures/Game.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="434">
-          <caret line="32" column="41" selection-start-line="32" selection-start-column="41" selection-end-line="32" selection-end-column="41" />
+        <state relative-caret-position="242">
+          <caret line="26" column="31" selection-start-line="26" selection-start-column="31" selection-end-line="26" selection-end-column="31" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#1725#1726#0" expanded="true" />
+            <element signature="e#1746#1747#0" expanded="true" />
           </folding>
         </state>
       </provider>

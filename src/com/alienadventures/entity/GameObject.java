@@ -26,6 +26,8 @@ public abstract class GameObject {
 	protected void applyVel() {
 		vel.x += acc.x;
 		vel.y += acc.y;
+		x += vel.x;
+		y += vel.y;
 	}
 
 	protected void applyGravity() { applyGravity(1); }
