@@ -4,7 +4,6 @@ import com.alienadventures.Resources;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.io.IOException;
 
 public class LetterMaker {
 	public static final int SCALE = 5;
@@ -27,7 +26,7 @@ public class LetterMaker {
 		}
 	}
 
-	public static BufferedImage makeSentence(String sent) {
+	private static int calculateWidth(String sent) {
 		int width = 0;
 		for (char c : sent.toCharArray()) {
 			if (c == ' ') {
@@ -36,11 +35,14 @@ public class LetterMaker {
 				width += sizes[letters.indexOf(c)];
 			}
 		}
+		return width;
+	}
+
+	public static BufferedImage makeSentence(String sent) {
+		int width = calculateWidth(sent);
 		int height = 8 * SCALE;
 		BufferedImage img = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
 		Graphics g = img.getGraphics();
-//		g.setColor(Color.BLUE);
-//		g.fillRect(0, 0, width, height);
 
 		int x = 0;
 		for (char letter : sent.toCharArray()) {

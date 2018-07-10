@@ -2,6 +2,7 @@ package com.alienadventures;
 
 import com.alienadventures.entity.GameObject;
 import com.alienadventures.entity.Particle;
+import com.alienadventures.ui.LetterMaker;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -21,14 +22,18 @@ public class World {
 	}
 
 	public void update() {
-		for (GameObject o:objects) {
+		for (GameObject o : objects) {
 			o.update();
 		}
 	}
 
 	public void render(Graphics g) {
-		for (GameObject o:objects) {
+		g.setColor(new Color(100));
+		g.fillRect(0, 0, Game.WIDTH, Game.HEIGHT);
+
+		for (GameObject o : objects) {
 			o.render(g);
 		}
+//		Resources.drawCentered(g, LetterMaker.makeSentence("lALIEN ADVENTURESr"), Game.WIDTH / 2, Game.HEIGHT / 2);
 	}
 }
