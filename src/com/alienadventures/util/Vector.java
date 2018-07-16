@@ -20,4 +20,12 @@ public class Vector {
 	public double magnitude() {
 		return Math.hypot(this.x, this.y);
 	}
+
+	public double getX() {
+		return x;
+	}
+
+	public double getY() {
+		return y;
+	}
 }

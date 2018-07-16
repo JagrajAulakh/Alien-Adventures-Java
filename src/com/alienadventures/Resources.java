@@ -9,11 +9,12 @@ import java.io.File;
 import java.io.IOException;
 
 public class Resources {
-	public static BufferedImage fontSheet;
+	public static BufferedImage fontSheet, menuBack;
 
 	public static synchronized void load() throws IOException {
 		new LetterMaker();
 		fontSheet = ImageIO.read(new File("fonts/font1.png"));
+		menuBack = ImageIO.read(new File("images/menu_back.png"));
 	}
 
 	public static BufferedImage scale(BufferedImage original, int newWidth, int newHeight) {

@@ -1,6 +1,8 @@
 package com.alienadventures.entity;
 
+import com.alienadventures.Camera;
 import com.alienadventures.Game;
+import com.alienadventures.World;
 
 import java.awt.*;
 
@@ -32,13 +34,18 @@ public class Particle extends GameObject {
 	@Override
 	public void update() {
 		life--;
-		applyGravity(0.2);
+		applyGravity(0.8);
 		applyVel();
+		if (y + height > Game.HEIGHT) {
+			y = Game.HEIGHT - height;
+			vel.y = vel.y * -0.8;
+			acc.y = 0;
+		}
 	}
 
 	@Override
-	public void render(Graphics g) {
+	public void render(Graphics g, Camera offset) {
 		g.setColor(color);
-		g.fillOval((int)x, (int)y, (int)width, (int)height);
+		g.fillOval((int)screenX(offset), (int)(screenY(offset)), (int)width, (int)height);
 	}
 }
