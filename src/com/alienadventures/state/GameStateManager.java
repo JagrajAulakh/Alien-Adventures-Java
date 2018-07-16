@@ -15,4 +15,13 @@ public class GameStateManager {
 	public void push(GameState state) {
 		states.push(state);
 	}
+
+	public void pop() {
+		states.pop();
+	}
+
+	public void set(GameState state) {
+		states.pop();
+		states.push(state);
+	}
 }

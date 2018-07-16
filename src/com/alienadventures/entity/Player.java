@@ -3,12 +3,13 @@ package com.alienadventures.entity;
 import com.alienadventures.Camera;
 import com.alienadventures.Game;
 import com.alienadventures.input.Input;
+import com.alienadventures.state.PlayState;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
 
 public class Player extends GameObject {
-	public static final double SPEED = 5;
+	public static final double SPEED = 8;
 	public static final double JUMP_HEIGHT = 10;
 
 	private boolean jumping, onGround;
@@ -27,7 +28,8 @@ public class Player extends GameObject {
 		setAccX(0);
 		if (Input.keyDown(KeyEvent.VK_D)) {
 			vel.x = SPEED;
-		} if (Input.keyDown(KeyEvent.VK_A)) {
+		}
+		if (Input.keyDown(KeyEvent.VK_A)) {
 			vel.x = -SPEED;
 		}
 
@@ -39,6 +41,11 @@ public class Player extends GameObject {
 		}
 		applyVel(true);
 		if (y + height > Game.HEIGHT) {
+			if (vel.y > 1) {
+				for (int i = 0; i < vel.y/3; i++) {
+					PlayState.world.addObject(new Particle(x + width / 2, y + height, new Color(131, 69, 17)));
+				}
+			}
 			y = Game.HEIGHT - height;
 			vel.y = 0;
 			acc.y = 0;

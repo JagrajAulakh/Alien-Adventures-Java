@@ -10,8 +10,8 @@ import java.io.File;
 import java.io.IOException;
 
 public class Game extends Canvas {
-	public static final int WIDTH = 800;
-	public static final int HEIGHT = 600;
+	public static final int WIDTH = 960;
+	public static final int HEIGHT = 640;
 	private GameLogic logic;
 	private JFrame frame;
 	private boolean running = true;
@@ -89,7 +89,7 @@ public class Game extends Canvas {
 			createBufferStrategy(3);
 			return;
 		}
-		Graphics g = bs.getDrawGraphics();
+		Graphics2D g = (Graphics2D)bs.getDrawGraphics();
 
 		logic.render(g);
 

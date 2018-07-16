@@ -6,7 +6,7 @@ import java.awt.*;
 
 public class PlayState implements GameState {
 
-	private World world;
+	public static World world;
 
 	public PlayState() {
 		world = new World();

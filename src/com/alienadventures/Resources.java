@@ -9,12 +9,13 @@ import java.io.File;
 import java.io.IOException;
 
 public class Resources {
-	public static BufferedImage fontSheet, menuBack;
+	public static BufferedImage fontSheet, menuBack, titleImage;
 
 	public static synchronized void load() throws IOException {
 		new LetterMaker();
 		fontSheet = ImageIO.read(new File("fonts/font1.png"));
-		menuBack = ImageIO.read(new File("images/menu_back.png"));
+		menuBack = scale(ImageIO.read(new File("images/menu_back_2.png")), 2);
+		titleImage = scale(ImageIO.read(new File("images/title.png")), 4);
 	}
 
 	public static BufferedImage scale(BufferedImage original, int newWidth, int newHeight) {
@@ -49,7 +50,7 @@ public class Resources {
 		return flipped;
 	}
 
-	public static void drawCentered(Graphics g, BufferedImage img, int x, int y) {
+	public static void drawCentered(Graphics2D g, BufferedImage img, int x, int y) {
 		int sx = x - img.getWidth() / 2;
 		int sy = y - img.getHeight() / 2;
 		g.drawImage(img, sx, sy, null);

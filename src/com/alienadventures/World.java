@@ -1,5 +1,6 @@
 package com.alienadventures;
 
+import com.alienadventures.block.Platform;
 import com.alienadventures.entity.GameObject;
 import com.alienadventures.entity.Particle;
 import com.alienadventures.entity.Player;
@@ -22,11 +23,16 @@ public class World {
 		camera = new Camera();
 		player = new Player();
 		objects = new ArrayList<GameObject>();
-		for (int i = 0; i < 100; i++) {
-			Particle p = new Particle(Math.random() * Game.WIDTH, Math.random() * Game.HEIGHT);
-			p.setVelY(-5);
-			objects.add(p);
-		}
+//		for (int i = 0; i < 100; i++) {
+//			Particle p = new Particle(Math.random() * Game.WIDTH, Math.random() * Game.HEIGHT);
+//			p.setVelY(-5);
+//			objects.add(p);
+//		}
+		objects.add(new Platform(0,Game.HEIGHT, Game.WIDTH, 20));
+	}
+
+	public void addObject(GameObject obj) {
+		objects.add(obj);
 	}
 
 	public void update() {
@@ -40,21 +46,22 @@ public class World {
 			o.update();
 			if (o instanceof Particle) {
 				Particle p = (Particle)o;
-//				if (p.dead()) objects.remove(o);
+				if (p.dead()) objects.remove(o);
 			}
 		}
 		player.update();
 		camera.centerOn(player);
+		System.out.println(objects.size());
 	}
 
 	public void render(Graphics g) {
 		g.setColor(new Color(100));
 		g.fillRect(0, 0, Game.WIDTH, Game.HEIGHT);
 
+		player.render(g, camera);
 		for (GameObject o : objects) {
 			o.render(g, camera);
 		}
-		player.render(g, camera);
 //		Resources.drawCentered(g, LetterMaker.makeSentence("lALIEN ADVENTURESr"), Game.WIDTH / 2, Game.HEIGHT / 2);
 	}
 }
