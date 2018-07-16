@@ -27,18 +27,10 @@ public class Camera {
 	public void setX(double x) { offset.x = x; }
 
 	public void centerOn(GameObject obj) {
-		double goBy = 1.0/100;
-		double newOffsetX = obj.getX() + Game.WIDTH / 2;
-		double newOffsetY = obj.getY() + Game.HEIGHT / 2;
+		double goBy = 1.0/10;
+		double newOffsetX = obj.getX() - Game.WIDTH/2;
+		double newOffsetY = obj.getY() - Game.HEIGHT/2;
 		offset.x += (newOffsetX - offset.x)*goBy;
 		offset.y += (newOffsetY - offset.y)*goBy;
-	}
-
-	public static void main(String[] args) {
-		Camera cam = new Camera();
-		for (int i = 0; i < 100; i++) {
-			cam.centerOn(new Particle(100, 100));
-			System.out.println(cam.getOffsetX() + ", " + cam.getOffsetY());
-		}
 	}
 }
