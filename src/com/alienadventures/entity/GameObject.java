@@ -45,7 +45,9 @@ public abstract class GameObject {
 
 	public double getHeight() { return height; }
 
-	protected void applyVel() {
+	protected void applyVel() { applyVel(false); }
+	protected void applyVel(boolean friction) {
+		if (friction) acc.x -= vel.x * World.FRICTION;
 		vel.x += acc.x;
 		vel.y += acc.y;
 		x += vel.x;
@@ -60,9 +62,9 @@ public abstract class GameObject {
 		acc.set(0, World.GRAVITY * factor);
 	}
 
-	protected double screenX(Camera offset) { return offset == null ? this.x : this.x - offset.getOffsetX(); }
+	public double screenX(Camera offset) { return offset == null ? this.x : this.x - offset.getOffsetX(); }
 
-	protected double screenY(Camera offset) { return offset == null ? this.y : this.y - offset.getOffsetY(); }
+	public double screenY(Camera offset) { return offset == null ? this.y : this.y - offset.getOffsetY(); }
 
 	public abstract void update();
 
