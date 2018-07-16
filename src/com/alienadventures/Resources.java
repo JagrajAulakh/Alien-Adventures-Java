@@ -26,9 +26,8 @@ public class Resources {
 		g.dispose();
 		return resized;
 	}
-
 	public static BufferedImage scale(BufferedImage image, double factor) {
-		return scale(image, (int)(image.getWidth() * factor), (int)(image.getHeight() * factor));
+		return scale(image, (int)(image.getWidth()*factor), (int)(image.getHeight()*factor));
 	}
 
 	public static BufferedImage flip(BufferedImage original, boolean hz, boolean vt) {
@@ -50,7 +49,7 @@ public class Resources {
 		return flipped;
 	}
 
-	public static void drawCentered(Graphics2D g, BufferedImage img, int x, int y) {
+	public static void drawCentered(Graphics g, BufferedImage img, int x, int y) {
 		int sx = x - img.getWidth() / 2;
 		int sy = y - img.getHeight() / 2;
 		g.drawImage(img, sx, sy, null);

@@ -89,7 +89,7 @@ public class Game extends Canvas {
 			createBufferStrategy(3);
 			return;
 		}
-		Graphics2D g = (Graphics2D)bs.getDrawGraphics();
+		Graphics g = bs.getDrawGraphics();
 
 		logic.render(g);
 
