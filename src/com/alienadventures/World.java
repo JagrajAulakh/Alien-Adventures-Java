@@ -51,7 +51,6 @@ public class World {
 		}
 		player.update();
 		camera.centerOn(player);
-		System.out.println(objects.size());
 	}
 
 	public void render(Graphics g) {

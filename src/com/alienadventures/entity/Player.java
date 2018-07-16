@@ -15,7 +15,7 @@ public class Player extends GameObject {
 	private boolean jumping, onGround;
 
 	public Player() {
-		super(0, 0);
+		super(Game.WIDTH/2, Game.HEIGHT/2);
 		setWidth(50);
 		setHeight(50);
 		jumping = true;

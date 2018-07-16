@@ -14,6 +14,7 @@ import java.util.ArrayList;
 public class MenuState implements GameState {
 
 	private ArrayList<Particle> particles;
+	private ArrayList<Button> buttons;
 	private boolean intro;
 	private int scrollCounter, h;
 	private Camera camera;
@@ -68,7 +69,6 @@ public class MenuState implements GameState {
 			p.update();
 			if (p.dead()) particles.remove(i);
 		}
-		System.out.println(camera);
 	}
 
 	@Override
@@ -80,15 +80,12 @@ public class MenuState implements GameState {
 
 		float opacity = 1f;
 		if (scrollCounter < 0) {
-			if (-300 <= scrollCounter && scrollCounter <= -150) {
-				opacity = (float)(scrollCounter + 300) / 150f;
+			if (-300 <= scrollCounter && scrollCounter <= -100) {
+				opacity = (float)(scrollCounter + 300) / 200f;
 			}
 		}
 		g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, opacity));
-		int x = screenX(Game.WIDTH / 2);
-		int y = screenY(-Game.HEIGHT / 2);
-		System.out.println(x + " " + y);
-		Resources.drawCentered(g2d, Resources.titleImage, x, y);
+		Resources.drawCentered(g2d, Resources.titleImage, screenX(Game.WIDTH / 2), screenY(-Game.HEIGHT / 2));
 		for (Particle p : particles) {
 			p.render(g, camera);
 		}
