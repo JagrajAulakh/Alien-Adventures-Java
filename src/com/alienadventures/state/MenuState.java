@@ -2,10 +2,12 @@ package com.alienadventures.state;
 
 import com.alienadventures.Camera;
 import com.alienadventures.Game;
-import com.alienadventures.GameLogic;
 import com.alienadventures.Resources;
 import com.alienadventures.entity.Particle;
 import com.alienadventures.input.Input;
+import com.alienadventures.ui.Button;
+import com.alienadventures.ui.Image;
+import com.alienadventures.ui.ScreenObject;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
@@ -14,7 +16,7 @@ import java.util.ArrayList;
 public class MenuState implements GameState {
 
 	private ArrayList<Particle> particles;
-	private ArrayList<Button> buttons;
+	private ArrayList<ScreenObject> objects;
 	private boolean intro;
 	private int scrollCounter, h;
 	private Camera camera;
@@ -26,15 +28,22 @@ public class MenuState implements GameState {
 	public MenuState(boolean intro) {
 		camera = new Camera();
 		particles = new ArrayList<Particle>();
+		objects = new ArrayList<ScreenObject>();
+		objects.add(new Button(0, 0, 0));
 		this.intro = intro;
 		scrollCounter = -300;
 		h = Game.HEIGHT;
 		if (intro) camera.setY(-h);
+		makeObjects();
 	}
 
 	private int screenX(double x) { return (int)(x - camera.getOffsetX()); }
 
 	private int screenY(double y) { return (int)(y - camera.getOffsetY()); }
+
+	private void makeObjects() {
+		objects.add(new Image(Resources.titleBanner, 100, Game.HEIGHT));
+	}
 
 	@Override
 	public void update() {
@@ -69,6 +78,9 @@ public class MenuState implements GameState {
 			p.update();
 			if (p.dead()) particles.remove(i);
 		}
+		for (ScreenObject obj : objects) {
+			obj.update();
+		}
 	}
 
 	@Override
@@ -76,16 +88,23 @@ public class MenuState implements GameState {
 		Graphics2D g2d = (Graphics2D)g;
 		g2d.setColor(Color.BLACK);
 		g2d.fillRect(0, 0, Game.WIDTH, Game.HEIGHT);
-		g2d.drawImage(Resources.menuBack, 0 - (int)(camera.getOffsetX() / 10), -64 - (int)(camera.getOffsetY() / 10), null);
+		g2d.drawImage(Resources.menuBack, 0 - (int)(camera.getOffsetX() / 10), -128 - (int)(camera.getOffsetY() / 10), null);
 
-		float opacity = 1f;
-		if (scrollCounter < 0) {
-			if (-300 <= scrollCounter && scrollCounter <= -100) {
-				opacity = (float)(scrollCounter + 300) / 200f;
+		if (intro) {
+			float opacity = 1f;
+			if (scrollCounter < 0) {
+				if (-300 <= scrollCounter && scrollCounter <= -100) {
+					opacity = (float)(scrollCounter + 300) / 200f;
+				}
 			}
+			g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, opacity));
+			Resources.drawCentered(g2d, Resources.titleImage, screenX(Game.WIDTH / 2), screenY(-Game.HEIGHT / 2));
 		}
-		g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, opacity));
-		Resources.drawCentered(g2d, Resources.titleImage, screenX(Game.WIDTH / 2), screenY(-Game.HEIGHT / 2));
+
+		for (ScreenObject obj : objects) {
+			obj.render(g2d, camera);
+		}
+
 		for (Particle p : particles) {
 			p.render(g, camera);
 		}

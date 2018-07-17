@@ -21,6 +21,7 @@ public class LetterMaker {
 		sizes[letters.indexOf('T')] = 7;
 		sizes[letters.indexOf('Y')] = 7;
 		sizes[letters.indexOf('1')] = 7;
+		sizes[letters.indexOf('.')] = 4;
 		for (int i = 0; i < sizes.length; i++) {
 			sizes[i] *= SCALE;
 		}

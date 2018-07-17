@@ -1,27 +1,34 @@
 package com.alienadventures;
 
 import com.alienadventures.input.Input;
+import com.alienadventures.ui.LetterMaker;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferStrategy;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
 public class Game extends Canvas {
 	public static final int WIDTH = 960;
 	public static final int HEIGHT = 640;
+	public static int frameCount = 0;
 	private GameLogic logic;
 	private JFrame frame;
 	private boolean running = true;
+	private boolean loading;
 	private Input input;
+	private Thread imageLoadingThread;
+	private static BufferedImage fireballImage;
 
 	public Game() {
+		load();
 		try {
-			Resources.load();
-		} catch (Exception e) { e.printStackTrace(); }
-		logic = new GameLogic();
+			fireballImage = Resources.getImage(ImageIO.read(new File("images/references (temp)/miscSheet.png")), new int[]{112, 0, 16, 16});
+			fireballImage = Resources.scale(fireballImage, 4);
+		} catch (IOException e) { e.printStackTrace(); }
 		frame = new JFrame("Alien Adventures");
 		try {
 			frame.setIconImage(ImageIO.read(new File("images/icon.png")));
@@ -46,6 +53,24 @@ public class Game extends Canvas {
 
 		frame.setVisible(true);
 		run();
+	}
+
+	private void load() {
+		imageLoadingThread = new Thread(new Runnable() {
+			@Override
+			public void run() {
+				try {
+					Resources.load();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+				logic = new GameLogic();
+				System.out.println("DONE");
+			}
+		});
+		imageLoadingThread.start();
+		loading = true;
+		frameCount = 0;
 	}
 
 	public void run() {
@@ -80,7 +105,11 @@ public class Game extends Canvas {
 	}
 
 	private void tick() {
-		logic.update();
+		loading = imageLoadingThread.isAlive();
+		frameCount++;
+		if (!loading) {
+			logic.update();
+		}
 	}
 
 	private void render() {
@@ -91,9 +120,33 @@ public class Game extends Canvas {
 		}
 		Graphics g = bs.getDrawGraphics();
 
-		logic.render(g);
+		if (loading) {
+			loadingAnimation(g);
+		} else {
+			logic.render(g);
+		}
 
 		g.dispose();
 		bs.show();
+	}
+
+	private void loadingAnimation(Graphics g) {
+		g.setColor(Color.BLACK);
+		g.fillRect(0, 0, WIDTH, HEIGHT);
+		Graphics2D g2d = (Graphics2D)g.create();
+
+		// FIREBALL
+		final int shake = 4;
+		int x = WIDTH - 64 + (int)Math.round(Math.random() * shake - shake / 2);
+		int y = HEIGHT - 64 + (int)Math.round(Math.random() * shake - shake / 2);
+		g2d.rotate(Math.toRadians(frameCount * 5), x, y);
+		Resources.drawCentered(g2d, fireballImage, x, y);
+
+		// LOADING LETTERS
+		String sent = "LOADING";
+		for (int i = 0; i < (frameCount / 15) % 4; i++) { sent += "."; }
+		try {
+			Resources.drawCentered(g, LetterMaker.makeSentence(sent), WIDTH / 2, HEIGHT / 2);
+		} catch (NullPointerException e) { System.out.println("ERROR!"); }
 	}
 }

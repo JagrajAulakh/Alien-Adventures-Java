@@ -1,5 +1,6 @@
 package com.alienadventures;
 
+import com.alienadventures.io.Reader;
 import com.alienadventures.ui.LetterMaker;
 
 import javax.imageio.ImageIO;
@@ -7,15 +8,35 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class Resources {
-	public static BufferedImage fontSheet, menuBack, titleImage;
+	public static BufferedImage fontSheet, menuBack, titleImage, titleBanner;
+	public static ArrayList<BufferedImage> buttonImages;
 
 	public static synchronized void load() throws IOException {
 		new LetterMaker();
 		fontSheet = ImageIO.read(new File("fonts/font1.png"));
-		menuBack = scale(ImageIO.read(new File("images/menu_back_2.png")), 2);
-		titleImage = scale(ImageIO.read(new File("images/title.png")), 4);
+		menuBack = scale(ImageIO.read(new File("images/menu_back.png")), 2);
+		titleImage = scale(ImageIO.read(new File("images/title.png")), 3);
+		titleBanner= scale(ImageIO.read(new File("images/title_banner.png")), 3);
+
+		BufferedImage buttonSheet = ImageIO.read(new File("images/sheets/button_sheet.png"));
+		ArrayList<int[]> buttonCo = Reader.getCo("data/sheets_cos/button_sheet_cos.txt");
+		buttonImages = new ArrayList<BufferedImage>();
+		for (int[] co:buttonCo) {
+			buttonImages.add(getImage(buttonSheet, co));
+		}
+
+		try {
+			Thread.sleep(2000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public static BufferedImage getImage(BufferedImage sheet, int[] co) {
+		return sheet.getSubimage(co[0], co[1], co[2], co[3]);
 	}
 
 	public static BufferedImage scale(BufferedImage original, int newWidth, int newHeight) {

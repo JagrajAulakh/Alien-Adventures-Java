@@ -23,6 +23,8 @@ public class Rectangle {
 	public double getY() { return y; }
 	public void setPos(double x, double y) { this.x = x; this.y = y; }
 	public void setRect(double x, double y, double width, double height) { setPos(x, y); this.width = width; this.height = height; }
+	public void setWidth(double width) { this.width = width; }
+	public void setHeight(double height) { this.height = height; }
 	public double getWidth() { return width; }
 	public double getHeight() { return height; }
 }
