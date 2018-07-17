@@ -9,6 +9,10 @@ public class Image extends ScreenObject {
 
 	private BufferedImage image;
 
+	public Image(BufferedImage img, float x, float y) {
+		this(img, (double)(x * Button.WIDTH), (double)(y * Button.HEIGHT));
+	}
+
 	public Image(BufferedImage img, double x, double y) {
 		super(x, y, img.getWidth(), img.getHeight());
 		this.image = img;

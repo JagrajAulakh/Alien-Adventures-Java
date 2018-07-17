@@ -16,7 +16,11 @@ public class Rectangle {
 	}
 
 	public boolean contains(Point other) {
-		return (x < other.getX() && other.getX() <= x + width && y < other.getY() && other.getY() <= y + height);
+		return contains(other.getX(), other.getY());
+	}
+
+	public boolean contains(double x, double y) {
+		return (this.x < x && x <= this.x + this.width && this.y < y && y <= this.y + this.height);
 	}
 
 	public double getX() { return x; }

@@ -65,7 +65,6 @@ public class Game extends Canvas {
 					e.printStackTrace();
 				}
 				logic = new GameLogic();
-				System.out.println("DONE");
 			}
 		});
 		imageLoadingThread.start();
@@ -135,18 +134,18 @@ public class Game extends Canvas {
 		g.fillRect(0, 0, WIDTH, HEIGHT);
 		Graphics2D g2d = (Graphics2D)g.create();
 
+		int o = (int)(Math.round(6 * Math.sin(Math.toRadians(frameCount*4))));
+
 		// FIREBALL
-		final int shake = 4;
+		final int shake = 2;
 		int x = WIDTH - 64 + (int)Math.round(Math.random() * shake - shake / 2);
-		int y = HEIGHT - 64 + (int)Math.round(Math.random() * shake - shake / 2);
+		int y = HEIGHT - 64 + (int)Math.round(Math.random() * shake - shake / 2) + o;
 		g2d.rotate(Math.toRadians(frameCount * 5), x, y);
 		Resources.drawCentered(g2d, fireballImage, x, y);
 
 		// LOADING LETTERS
-		String sent = "LOADING";
-		for (int i = 0; i < (frameCount / 15) % 4; i++) { sent += "."; }
 		try {
-			Resources.drawCentered(g, LetterMaker.makeSentence(sent), WIDTH / 2, HEIGHT / 2);
+			Resources.drawCentered(g, LetterMaker.makeSentence("LOADING..."), WIDTH /2 + WIDTH/6, HEIGHT - 60 + o);
 		} catch (NullPointerException e) { System.out.println("ERROR!"); }
 	}
 }

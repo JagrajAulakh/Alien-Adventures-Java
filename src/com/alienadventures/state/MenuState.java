@@ -7,6 +7,7 @@ import com.alienadventures.entity.Particle;
 import com.alienadventures.input.Input;
 import com.alienadventures.ui.Button;
 import com.alienadventures.ui.Image;
+import com.alienadventures.ui.LetterMaker;
 import com.alienadventures.ui.ScreenObject;
 
 import java.awt.*;
@@ -29,9 +30,8 @@ public class MenuState implements GameState {
 		camera = new Camera();
 		particles = new ArrayList<Particle>();
 		objects = new ArrayList<ScreenObject>();
-		objects.add(new Button(0, 0, 0));
 		this.intro = intro;
-		scrollCounter = -300;
+		scrollCounter = -400;
 		h = Game.HEIGHT;
 		if (intro) camera.setY(-h);
 		makeObjects();
@@ -42,7 +42,9 @@ public class MenuState implements GameState {
 	private int screenY(double y) { return (int)(y - camera.getOffsetY()); }
 
 	private void makeObjects() {
-		objects.add(new Image(Resources.titleBanner, 100, Game.HEIGHT));
+		objects.add(new Image(Resources.titleBanner, 13.5f, 0.5f));
+		objects.add(new Button(20f, 8f, "START", 0));
+		objects.add(new Button(20f, 11f, "OPTIONS", 0));
 	}
 
 	@Override
@@ -85,20 +87,26 @@ public class MenuState implements GameState {
 
 	@Override
 	public void render(Graphics g) {
-		Graphics2D g2d = (Graphics2D)g;
-		g2d.setColor(Color.BLACK);
-		g2d.fillRect(0, 0, Game.WIDTH, Game.HEIGHT);
-		g2d.drawImage(Resources.menuBack, 0 - (int)(camera.getOffsetX() / 10), -128 - (int)(camera.getOffsetY() / 10), null);
+		Graphics2D g2d = (Graphics2D)g.create();
+
+		if (-400 <= scrollCounter && scrollCounter <= -300) {
+			double i = (scrollCounter+400.0)/100.0*255;
+			g2d.drawImage(Resources.darken(Resources.menuBack, 255 - (int)i), 0 - (int)(camera.getOffsetX() / 10), -128 - (int)(camera.getOffsetY() / 10), null);
+		} else {
+			g2d.drawImage(Resources.menuBack, 0 - (int)(camera.getOffsetX() / 10), -128 - (int)(camera.getOffsetY() / 10), null);
+		}
 
 		if (intro) {
 			float opacity = 1f;
 			if (scrollCounter < 0) {
-				if (-300 <= scrollCounter && scrollCounter <= -100) {
-					opacity = (float)(scrollCounter + 300) / 200f;
+				if (scrollCounter < -300) opacity = 0;
+				if (-300 <= scrollCounter && scrollCounter <= -200) {
+					opacity = (float)(scrollCounter + 300) / 100f;
 				}
 			}
 			g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, opacity));
-			Resources.drawCentered(g2d, Resources.titleImage, screenX(Game.WIDTH / 2), screenY(-Game.HEIGHT / 2));
+			double i = 5 * Math.sin(Math.toRadians(Game.frameCount*4));
+			Resources.drawCentered(g2d, Resources.titleImage, screenX(Game.WIDTH / 2), screenY(-Game.HEIGHT / 2) + (int)i);
 		}
 
 		for (ScreenObject obj : objects) {
@@ -108,5 +116,17 @@ public class MenuState implements GameState {
 		for (Particle p : particles) {
 			p.render(g, camera);
 		}
+
+//		Resources.drawCentered(g, LetterMaker.makeSentence("TEST SENT", 4), Game.WIDTH / 2, Game.HEIGHT / 2);
+
+//		g.setColor(new Color(0, 0, 0, 50));
+//		for (int x = 0; x < Game.WIDTH; x += Button.WIDTH) {
+//			int sx = (int)(x - camera.getOffsetX() % Game.WIDTH);
+//			g.drawLine(sx, 0, sx, Game.HEIGHT);
+//		}
+//		for (int y = 0; y < Game.HEIGHT; y += Button.HEIGHT) {
+//			int sy = (int)(y - camera.getOffsetY() % Game.HEIGHT);
+//			g.drawLine(0, sy, Game.WIDTH, sy);
+//		}
 	}
 }

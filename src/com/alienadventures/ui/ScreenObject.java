@@ -6,7 +6,6 @@ import com.alienadventures.util.Rectangle;
 import java.awt.*;
 
 public abstract class ScreenObject {
-	protected double x, y;
 	protected Rectangle bounds;
 
 	public ScreenObject(double x, double y, double width, double height) {
@@ -20,8 +19,8 @@ public abstract class ScreenObject {
 	protected void setWidth(double width) { this.bounds.setWidth(width); }
 	protected void setHeight(double height) { this.bounds.setHeight(height); }
 
-	protected int screenX(Camera camera) { return (int)(x - camera.getOffsetX()); }
-	protected int screenY(Camera camera) { return (int)(y - camera.getOffsetY()); }
+	protected int screenX(Camera camera) { return (int)(getX() - camera.getOffsetX()); }
+	protected int screenY(Camera camera) { return (int)(getY() - camera.getOffsetY()); }
 
 	public abstract void update();
 	public abstract void render(Graphics g, Camera camera);
