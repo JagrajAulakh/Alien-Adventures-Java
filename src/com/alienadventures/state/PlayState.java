@@ -1,8 +1,10 @@
 package com.alienadventures.state;
 
 import com.alienadventures.World;
+import com.alienadventures.input.Input;
 
 import java.awt.*;
+import java.awt.event.KeyEvent;
 
 public class PlayState implements GameState {
 
@@ -14,6 +16,9 @@ public class PlayState implements GameState {
 
 	@Override
 	public void update() {
+		if (Input.keyUpOnce(KeyEvent.VK_ESCAPE)) {
+			System.exit(0);
+		}
 		world.update();
 	}
 

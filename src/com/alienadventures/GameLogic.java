@@ -10,8 +10,8 @@ public class GameLogic {
 	private GameStateManager gsm;
 	public GameLogic() {
 		gsm = new GameStateManager();
-		gsm.push(new MenuState(true));
-//		gsm.push(new PlayState());
+//		gsm.push(new MenuState(true));
+		gsm.push(new PlayState());
 	}
 
 	public void update() {

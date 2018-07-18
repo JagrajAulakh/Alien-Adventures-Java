@@ -19,8 +19,8 @@ public class Platform extends GameObject {
 	}
 
 	@Override
-	public void render(Graphics g, Camera offset) {
+	public void render(Graphics g, Camera camera) {
 		g.setColor(new Color(255, 246, 71));
-		g.fillRect((int)screenX(offset), (int)screenY(offset), (int)width, (int)height);
+		g.fillRect((int)screenX(camera), (int)screenY(camera), (int)width, (int)height);
 	}
 }

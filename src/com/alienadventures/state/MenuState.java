@@ -31,9 +31,13 @@ public class MenuState implements GameState {
 		particles = new ArrayList<Particle>();
 		objects = new ArrayList<ScreenObject>();
 		this.intro = intro;
-		scrollCounter = -400;
 		h = Game.HEIGHT;
-		if (intro) camera.setY(-h);
+		if (intro) {
+			camera.setY(-h);
+			scrollCounter = -400;
+		} else {
+			scrollCounter = 0;
+		}
 		makeObjects();
 	}
 
