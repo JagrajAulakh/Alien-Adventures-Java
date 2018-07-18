@@ -16,13 +16,19 @@ public class Rectangle {
 	}
 
 	public boolean contains(Point other) {
-		return (x < other.getX() && other.getX() <= x + width && y < other.getY() && other.getY() <= y + height);
+		return contains(other.getX(), other.getY());
+	}
+
+	public boolean contains(double x, double y) {
+		return (this.x < x && x <= this.x + this.width && this.y < y && y <= this.y + this.height);
 	}
 
 	public double getX() { return x; }
 	public double getY() { return y; }
 	public void setPos(double x, double y) { this.x = x; this.y = y; }
 	public void setRect(double x, double y, double width, double height) { setPos(x, y); this.width = width; this.height = height; }
+	public void setWidth(double width) { this.width = width; }
+	public void setHeight(double height) { this.height = height; }
 	public double getWidth() { return width; }
 	public double getHeight() { return height; }
 }

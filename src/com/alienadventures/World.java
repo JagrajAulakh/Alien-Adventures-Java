@@ -28,7 +28,7 @@ public class World {
 //			p.setVelY(-5);
 //			objects.add(p);
 //		}
-		objects.add(new Platform(0,Game.HEIGHT, Game.WIDTH, 20));
+		objects.add(new Platform(0, Game.HEIGHT, Game.WIDTH, 20));
 	}
 
 	public void addObject(GameObject obj) {
@@ -37,11 +37,11 @@ public class World {
 
 	public void update() {
 		if (Input.keyDown(KeyEvent.VK_RIGHT)) {
-			camera.setX(camera.getOffsetX()+1);
+			camera.setX(camera.getOffsetX() + 1);
 		} else if (Input.keyDown(KeyEvent.VK_LEFT)) {
-			camera.setX(camera.getOffsetX()-1);
+			camera.setX(camera.getOffsetX() - 1);
 		}
-		for (int i = objects.size()-1; i >= 0; i--) {
+		for (int i = objects.size() - 1; i >= 0; i--) {
 			GameObject o = objects.get(i);
 			o.update();
 			if (o instanceof Particle) {
@@ -54,13 +54,12 @@ public class World {
 	}
 
 	public void render(Graphics g) {
-		g.setColor(new Color(100));
+		g.setColor(new Color(93, 210, 255));
 		g.fillRect(0, 0, Game.WIDTH, Game.HEIGHT);
 
 		player.render(g, camera);
 		for (GameObject o : objects) {
 			o.render(g, camera);
 		}
-//		Resources.drawCentered(g, LetterMaker.makeSentence("lALIEN ADVENTURESr"), Game.WIDTH / 2, Game.HEIGHT / 2);
 	}
 }
