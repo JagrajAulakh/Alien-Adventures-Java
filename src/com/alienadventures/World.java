@@ -5,7 +5,9 @@ import com.alienadventures.entity.GameObject;
 import com.alienadventures.entity.Particle;
 import com.alienadventures.entity.Player;
 import com.alienadventures.input.Input;
+import com.alienadventures.util.Point;
 import com.alienadventures.util.QuadTree;
+import com.alienadventures.util.Rectangle;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
@@ -17,7 +19,7 @@ public class World {
 
 	public static QuadTree tree = new QuadTree();
 
-	private ArrayList<GameObject> objects;
+	private ArrayList<GameObject> objects, toRemove;
 	private Camera camera;
 	private Player player;
 	private static Thread loadingThread;
@@ -26,6 +28,7 @@ public class World {
 		camera = new Camera();
 		player = new Player();
 		objects = new ArrayList<GameObject>();
+		toRemove = new ArrayList<GameObject>();
 
 		loadingThread = new Thread(new Runnable() {
 			@Override
@@ -51,6 +54,8 @@ public class World {
 		objects.add(obj);
 	}
 
+	public void removeObject(GameObject obj) { toRemove.add(obj); }
+
 	public void update() {
 		if (isLoading()) {
 		} else {
@@ -59,13 +64,18 @@ public class World {
 			} else if (Input.keyDown(KeyEvent.VK_LEFT)) {
 				camera.setX(camera.getOffsetX() - 10);
 			}
+			for (GameObject o : toRemove) {
+				objects.remove(o);
+			}
+			tree.clear();
 			for (int i = objects.size() - 1; i >= 0; i--) {
 				GameObject o = objects.get(i);
 				o.update();
 				if (o instanceof Particle) {
 					Particle p = (Particle)o;
-					if (p.dead()) objects.remove(o);
+					if (p.dead()) toRemove.add(o);
 				}
+				tree.insert(new Point(o.getCenterX(), o.getCenterY(), o));
 			}
 			player.update();
 			camera.centerOn(player);
@@ -82,13 +92,15 @@ public class World {
 			g2d.rotate(Math.toRadians(Game.frameCount), x, y);
 			Resources.drawCentered(g2d, Resources.fireBallImage, x, y);
 		} else {
+			ArrayList<Point> points = tree.query(new Rectangle(camera.getOffsetX(), camera.getOffsetY(), camera.getOffsetX() + Game.WIDTH, camera.getOffsetY() + Game.HEIGHT));
+			System.out.println(points.size());
 			for (GameObject o : objects) {
 				o.render(g, camera);
 				g.setColor(Color.GREEN);
-				o.drawHitBox((Graphics2D)g.create(), camera);
+//				o.drawHitBox((Graphics2D)g.create(), camera);
 			}
 			player.render(g, camera);
-			player.drawHitBox((Graphics2D)g.create(), camera);
+//			player.drawHitBox((Graphics2D)g.create(), camera);
 		}
 	}
 }

@@ -42,7 +42,7 @@ public class Resources {
 		playerSheet = ImageIO.read(new File("images/sheets/player_sheet.png"));
 		ArrayList<int[]> playerCo = Reader.getCo("data/sheets_cos/player_sheet_cos.txt");
 		for (int p = 0; p < 5; p++) {
-			int i = p * 14;
+			int i = p * 16;
 			// 0 STILL
 			ImageType img = new SingleImage(scale(getImage(playerSheet, playerCo.get(i)), SCALE));
 			playerImageList.add(img);
@@ -59,7 +59,7 @@ public class Resources {
 			img = new SingleImage(scale(getImage(playerSheet, playerCo.get(i + 6)), SCALE));
 			playerImageList.add(img);
 			// 4 DUCKING
-			img = new Animation(20);
+			img = new Animation(5);
 			for (int j = 0; j < 2; j++) {
 				((Animation)img).addFrame(scale(getImage(playerSheet, playerCo.get(i + j + 7)), SCALE));
 			}
@@ -77,6 +77,12 @@ public class Resources {
 			img = new Animation(20);
 			for (int j = 0; j < 2; j++) {
 				((Animation)img).addFrame(scale(getImage(playerSheet, playerCo.get(i + j + 12)), SCALE));
+			}
+			playerImageList.add(img);
+			// 8 SLIDE
+			img = new Animation(20);
+			for (int j = 0; j < 2; j++) {
+				((Animation)img).addFrame(scale(getImage(playerSheet, playerCo.get(i + j + 14)), SCALE));
 			}
 			playerImageList.add(img);
 		}

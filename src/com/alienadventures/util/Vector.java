@@ -17,6 +17,11 @@ public class Vector {
 		this.y = y;
 	}
 
+	public void multiply(double a) {
+		this.x *= a;
+		this.y *= a;
+	}
+
 	public double magnitude() {
 		return Math.hypot(this.x, this.y);
 	}

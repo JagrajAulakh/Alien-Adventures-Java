@@ -30,18 +30,20 @@ public abstract class GameObject {
 	public void setVelX(double x) { this.vel.x = x; }
 	public void setVel(double x, double y) { this.vel.set(x, y); }
 	public void setVelY(double y) { this.vel.y = y; }
-	public void setAccX(double x) { this.vel.x = x; }
-	public void setAccY(double y) { this.vel.y = y; }
+	public void setAccX(double x) { this.acc.x = x; }
+	public void setAccY(double y) { this.acc.y = y; }
 	public double getX() { return x; }
 	public double getY() { return y; }
 	public double getWidth() { return width; }
 	public double getHeight() { return height; }
+	public double getCenterX() { return x + width/2; }
+	public double getCenterY() { return y + height/2; }
 
 	protected void updateHitBox() { hitBox.setRect(x, y, width, height); }
 
-	protected void applyVel() { applyVel(false); }
-	protected void applyVel(boolean friction) {
-		if (friction) acc.x -= vel.x * World.FRICTION;
+	protected void applyVel() { applyVel(World.FRICTION); }
+	protected void applyVel(double friction) {
+		acc.x -= vel.x * friction;
 		vel.x += acc.x;
 		vel.y += acc.y;
 		x += vel.x;
