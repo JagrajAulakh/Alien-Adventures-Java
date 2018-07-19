@@ -43,7 +43,8 @@ public class Particle extends GameObject {
 	public void update() {
 		life--;
 		applyGravity(0.2);
-		applyVel(0);
+		applyVelY();
+		applyVelX(0);
 		if (y + height > Game.HEIGHT) {
 			y = Game.HEIGHT - height;
 			vel.y = vel.y * -0.8;
