@@ -1,4 +1,5 @@
 package com.alienadventures.util;
+import com.alienadventures.Camera;
 import com.alienadventures.Game;
 
 import java.awt.*;
@@ -7,17 +8,18 @@ import java.util.ArrayList;
 public class QuadTree {
 	private int capacity;
 	private QuadTree[] nodes;
-	private ArrayList<Point> points = new ArrayList<Point>();
+	private ArrayList<Rectangle> rectangles = new ArrayList<Rectangle>();
 	private Rectangle bounds;
 
 	public QuadTree() {
-		this(0, 0, Game.WIDTH, Game.HEIGHT, 4);
+		this(4);
 	}
-
 	public QuadTree(int cap) {
 		this(0, 0, Game.WIDTH, Game.HEIGHT, cap);
 	}
-
+	public QuadTree(double x, double y, double width, double height) {
+		this(x, y, width, height, 4);
+	}
 	public QuadTree(double x, double y, double width, double height, int cap) {
 		this.capacity = cap;
 		nodes = new QuadTree[4];
@@ -26,7 +28,7 @@ public class QuadTree {
 
 	public void clear() {
 		nodes = new QuadTree[4];
-		points.clear();
+		rectangles.clear();
 	}
 
 	private void subdivide() {
@@ -34,53 +36,56 @@ public class QuadTree {
 		nodes[1] = new QuadTree(bounds.getX(), bounds.getY(), bounds.getWidth() / 2, bounds.getHeight() / 2, capacity);
 		nodes[2] = new QuadTree(bounds.getX(), bounds.getY() + bounds.getHeight() / 2, bounds.getWidth() / 2, bounds.getHeight() / 2, capacity);
 		nodes[3] = new QuadTree(bounds.getX() + bounds.getWidth() / 2, bounds.getY() + bounds.getHeight() / 2, bounds.getWidth() / 2, bounds.getHeight() / 2, capacity);
-		for (int i = 0; i < points.size(); i++) {
-			insert(points.remove(0));
+		for (int i = 0; i < rectangles.size(); i++) {
+			insert(rectangles.remove(0));
 		}
 	}
 
-	public void insert(Point p) {
-		if (points.size() >= capacity) {
+	public void insert(Rectangle r) {
+		if (rectangles.size() >= capacity && nodes[0] == null) {
 			subdivide();
 		}
 
 		if (nodes[0] == null) {
-			points.add(p);
+			rectangles.add(r);
 		} else {
+			boolean found = false;
 			for (QuadTree n : nodes) {
-				if (n.bounds.contains(p)) {
-					n.insert(p);
+				if (n.bounds.contains(r)) {
+					n.insert(r);
+					found = true;
 					break;
 				}
 			}
+			if (!found) rectangles.add(r);
 		}
 	}
 
-	public void show(Graphics g) {
-		g.drawRect((int)bounds.getX(), (int)bounds.getY(), (int)bounds.getWidth(), (int)bounds.getHeight());
+	public void show(Graphics g, Camera camera) {
+		g.drawRect((int)((int)bounds.getX()-camera.getOffsetX()), (int)(bounds.getY()-camera.getOffsetY()), (int)bounds.getWidth(), (int)bounds.getHeight());
 		if (nodes[0] != null) {
 			for (QuadTree n : nodes) {
-				n.show(g);
+				n.show(g, camera);
 			}
 		}
 	}
 
-	private void query(ArrayList<Point> points, Rectangle range) {
+	private void query(ArrayList<Rectangle> rectangles, Rectangle range) {
 		if (bounds.intersects(range)) {
-			for (Point p : this.points) {
-				if (range.contains(p)) points.add(p);
+			for (Rectangle r : this.rectangles) {
+				if (range.intersects(r)) rectangles.add(r);
 			}
 			if (nodes[0] != null) {
 				for (QuadTree n : nodes) {
-					n.query(points, range);
+					n.query(rectangles, range);
 				}
 			}
 		}
 	}
 
-	public ArrayList<Point> query(Rectangle range) {
-		ArrayList<Point> points = new ArrayList<Point>();
-		query(points, range);
-		return points;
+	public ArrayList<Rectangle> query(Rectangle range) {
+		ArrayList<Rectangle> rectangles = new ArrayList<Rectangle>();
+		query(rectangles, range);
+		return rectangles;
 	}
 }

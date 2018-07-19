@@ -13,8 +13,13 @@ public abstract class GameObject {
 	protected Rectangle hitBox;
 
 	public GameObject(double x, double y) {
+		this(x, y, 0, 0);
+	}
+	public GameObject(double x, double y, double width, double height) {
 		this.x = x;
 		this.y = y;
+		this.width = width;
+		this.height = height;
 		vel = new Vector(0, 0);
 		acc = new Vector(0, 0);
 		hitBox = new Rectangle(x, y, width, height);
@@ -41,13 +46,15 @@ public abstract class GameObject {
 
 	protected void updateHitBox() { hitBox.setRect(x, y, width, height); }
 
-	protected void applyVel() { applyVel(World.FRICTION); }
-	protected void applyVel(double friction) {
+	protected void applyVelY() {
+		vel.y += acc.y;
+		y += vel.y;
+	}
+	protected void applyVelX() { applyVelX(World.FRICTION); }
+	protected void applyVelX(double friction) {
 		acc.x -= vel.x * friction;
 		vel.x += acc.x;
-		vel.y += acc.y;
 		x += vel.x;
-		y += vel.y;
 	}
 
 	protected void applyGravity() {
@@ -61,6 +68,10 @@ public abstract class GameObject {
 	public double screenX(Camera offset) { return offset == null ? this.x : this.x - offset.getOffsetX(); }
 
 	public double screenY(Camera offset) { return offset == null ? this.y : this.y - offset.getOffsetY(); }
+
+	protected boolean collides(GameObject other) {
+		return other.hitBox.intersects(hitBox);
+	}
 
 	public abstract void update();
 

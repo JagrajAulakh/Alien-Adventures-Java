@@ -34,11 +34,11 @@ public class Player extends GameObject {
 
 	public Player(int type) {
 		super(Game.WIDTH / 2, Game.HEIGHT / 2);
-		setWidth(1);
-		setHeight(1);
+		this.image = Resources.playerImages.get(type * 8)[0];
+		setWidth(image.getImage().getWidth());
+		setHeight(image.getImage().getHeight());
 		onGround = false;
 		this.type = type;
-		this.image = Resources.playerImages.get(type * 8)[0];
 		updateHitBox();
 	}
 
@@ -76,29 +76,50 @@ public class Player extends GameObject {
 		}
 	}
 
-	private void collisionX(ArrayList<Point> points) {
-		for (Point p:points) {
-			GameObject o = (GameObject)p.getData();
-			if (o instanceof Platform) {
-				if (vel.x > 0) {
-					x = o.getX() - width;
-				} else {
-					x = o.getX() + o.getWidth();
+	private void collisionX(ArrayList<Rectangle> rectangles) {
+		for (Rectangle r:rectangles) {
+			GameObject o = (GameObject)r.getData();
+			if (collides(o)) {
+				if (o instanceof Platform) {
+					if (vel.x > 0) {
+						x = o.getX() - width;
+						vel.x = acc.x = 0;
+					} else if (vel.x < 0) {
+						x = o.getX() + o.getWidth();
+						vel.x = acc.x = 0;
+					}
 				}
+				updateHitBox();
 			}
 		}
 	}
 
-	private void collisionY(ArrayList<Point> points) {
-		for (Point p:points) {
-			GameObject o = (GameObject)p.getData();
+	private void collisionY(ArrayList<Rectangle> rectangles) {
+//		if (y + height > Game.HEIGHT) {
+//			if (vel.y > 1) {
+//				for (int i = 0; i < vel.y / 3; i++) {
+//					PlayState.world.addObject(new Particle(x + width / 2, y + height, new Color(131, 69, 17)));
+//				}
+//			}
+//			y = Game.HEIGHT - height;
+//			vel.y = acc.y = 0;
+//			onGround = true;
+//		}
+		for (Rectangle r:rectangles) {
+			GameObject o = (GameObject)r.getData();
 			if (o instanceof Platform) {
-				if (vel.x > 0) {
-					x = o.getX() - width;
-				} else {
-					x = o.getX() + o.getWidth();
+				if (collides((o))) {
+					if (vel.y > 0) {
+						y = o.getY() - height;
+						vel.y = acc.y = 0;
+						onGround = true;
+					} else if (vel.y < 0) {
+						y = o.getY() + o.getHeight();
+						vel.y = acc.y = 0;
+					}
 				}
 			}
+			updateHitBox();
 		}
 	}
 
@@ -131,24 +152,20 @@ public class Player extends GameObject {
 				vel.y = -JUMP_HEIGHT;
 			}
 		}
+
+		double range = 100;
+		ArrayList<Rectangle> points = World.tree.query(new Rectangle(getCenterX() - range, getCenterY() - range, range*2, range*2));
+
 		double friction = World.FRICTION;
 		if (ducking) friction *= 0.1;
-		applyVel(friction);
-		if (y + height > Game.HEIGHT) {
-			if (vel.y > 1) {
-				for (int i = 0; i < vel.y / 3; i++) {
-					PlayState.world.addObject(new Particle(x + width / 2, y + height, new Color(131, 69, 17)));
-				}
-			}
-			y = Game.HEIGHT - height;
-			vel.y = 0;
-			acc.y = 0;
-			onGround = true;
-		}
-		double range = 50;
-		ArrayList<Point> points = World.tree.query(new Rectangle(getCenterX() - range, getCenterY() - range, getCenterX() + range, getCenterY() + range));
-		collisionX(points);
+		applyVelY();
+		updateHitBox();
 		collisionY(points);
+		updateHitBox();
+
+		applyVelX(friction);
+		updateHitBox();
+		collisionX(points);
 		updateHitBox();
 
 		prevImage = image;
@@ -161,8 +178,6 @@ public class Player extends GameObject {
 
 	@Override
 	public void render(Graphics g, Camera camera) {
-		g.setColor(Color.WHITE);
-		g.fillRect((int)screenX(camera), (int)screenY(camera), (int)width, (int)height);
 		double x = screenX(camera) + this.width / 2;
 		double y = screenY(camera) + this.height;
 		Resources.drawCentered(g, image.getImage(), (int)x, (int)(y - image.getImage().getHeight() / 2));
