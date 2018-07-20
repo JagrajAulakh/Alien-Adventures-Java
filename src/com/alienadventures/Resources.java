@@ -12,10 +12,11 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Resources {
 	public static final double SCALE = 3;
-	public static BufferedImage menuBack, titleImage, titleBanner, fireBallImage;
+	public static BufferedImage menuBack, titleImage, titleBanner, fireBallImage, boxImage;
 	public static BufferedImage fontSheet, buttonSheet, miscSheet, playerSheet;
 	public static ArrayList<BufferedImage> buttonImages;
 	public static ArrayList<ImageType[]> playerImages;
@@ -37,6 +38,7 @@ public class Resources {
 		miscSheet = ImageIO.read(new File("images/sheets/misc_sheet.png"));
 		ArrayList<int[]> miscCo = Reader.getCo("data/sheets_cos/button_sheet_cos.txt");
 		fireBallImage = scale(miscSheet.getSubimage(112, 80, 16, 16), 4);
+		boxImage = scale(getImage(miscSheet, new int[] {0, 192, 16, 16}), SCALE);
 
 		ArrayList<ImageType> playerImageList = new ArrayList<ImageType>();
 		playerSheet = ImageIO.read(new File("images/sheets/player_sheet.png"));

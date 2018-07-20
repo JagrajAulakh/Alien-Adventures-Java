@@ -1,6 +1,7 @@
 package com.alienadventures;
 
 import com.alienadventures.block.Platform;
+import com.alienadventures.entity.Box;
 import com.alienadventures.entity.GameObject;
 import com.alienadventures.entity.Particle;
 import com.alienadventures.entity.Player;
@@ -17,7 +18,7 @@ public class World {
 	public static final double GRAVITY = 0.5;
 	public static final double FRICTION = 0.4;
 
-	public static QuadTree tree = new QuadTree(-Game.WIDTH, -Game.HEIGHT, Game.WIDTH*2, Game.HEIGHT*2, 1);
+	public static QuadTree tree = new QuadTree(-Game.WIDTH, -Game.HEIGHT, Game.WIDTH * 2, Game.HEIGHT * 2, 1);
 
 	private ArrayList<GameObject> objects, toRemove;
 	private Camera camera;
@@ -26,7 +27,7 @@ public class World {
 
 	public World() {
 		camera = new Camera();
-		player = new Player();
+		player = new Player(Player.PLAYER_BROWN);
 		objects = new ArrayList<GameObject>();
 		toRemove = new ArrayList<GameObject>();
 
@@ -40,11 +41,11 @@ public class World {
 	}
 
 	private void loadWorld() {
-		for (int i = 0; i < 100; i++) {
+		for (int i = 0; i < 10; i++) {
 			Particle p = new Particle(player.getX() + player.getWidth() / 2, player.getY() + player.getHeight() / 2);
 			objects.add(p);
 		}
-		objects.add(new Platform(0, Game.HEIGHT, Game.WIDTH, 50));
+		objects.add(new Platform(0, Game.HEIGHT / 2, Game.WIDTH, 50));
 //		try { Thread.sleep(2000); } catch (InterruptedException e) { e.printStackTrace(); }
 	}
 
@@ -53,9 +54,11 @@ public class World {
 	public void addObject(GameObject obj) {
 		objects.add(obj);
 	}
+
 	public void removeObject(GameObject obj) { toRemove.add(obj); }
 
 	public int screenX(double x) { return (int)(x - camera.getOffsetX());}
+
 	public int screenY(double y) { return (int)(y - camera.getOffsetY());}
 
 	public void update() {
@@ -70,8 +73,7 @@ public class World {
 				objects.remove(o);
 			}
 			tree.clear();
-			for (int i = objects.size() - 1; i >= 0; i--) {
-				GameObject o = objects.get(i);
+			for (GameObject o : objects) {
 				o.update();
 				if (o instanceof Particle) {
 					Particle p = (Particle)o;
@@ -99,7 +101,7 @@ public class World {
 			g2d.setStroke(new BasicStroke(5));
 			g2d.drawRect(screenX(range.getX()), screenY(range.getY()), (int)range.getWidth(), (int)range.getHeight());
 			ArrayList<Rectangle> rects = tree.query(range);
-			System.out.println(rects.size() + " " + objects.size());
+
 			for (Rectangle r : rects) {
 				GameObject o = (GameObject)r.getData();
 				o.render(g, camera);
@@ -109,7 +111,8 @@ public class World {
 			player.render(g, camera);
 //			player.drawHitBox((Graphics2D)g.create(), camera);
 			g.setColor(new Color(255, 100, 255));
-			tree.show(g, camera);
+			g.setColor(Color.RED);
+//			tree.show(g, camera);
 		}
 	}
 }

@@ -2,14 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e339dfba-21cb-4890-9cf2-af9f1a7ca4a2" name="Default" comment="">
+      <change afterPath="$PROJECT_DIR$/src/com/alienadventures/entity/Box.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/data/sheets_cos/player_sheet_cos.txt" beforeDir="false" afterPath="$PROJECT_DIR$/assets/data/sheets_cos/player_sheet_cos.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/alienadventures/Resources.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/alienadventures/Resources.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/alienadventures/World.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/alienadventures/World.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/alienadventures/block/Platform.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/alienadventures/block/Platform.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/alienadventures/entity/GameObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/alienadventures/entity/GameObject.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/alienadventures/entity/Particle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/alienadventures/entity/Particle.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/alienadventures/entity/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/alienadventures/entity/Player.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/alienadventures/util/QuadTree.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/alienadventures/util/QuadTree.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/alienadventures/util/Rectangle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/alienadventures/util/Rectangle.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -21,11 +20,41 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Player.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Resources.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/alienadventures/Resources.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1166">
+              <caret line="65" column="76" selection-start-line="65" selection-start-column="76" selection-end-line="65" selection-end-column="76" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="player_sheet_cos.txt" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/assets/data/sheets_cos/player_sheet_cos.txt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="308">
+              <caret line="14" column="11" selection-start-line="14" selection-start-column="11" selection-end-line="14" selection-end-column="11" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Player.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/alienadventures/entity/Player.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1386">
-              <caret line="78" column="59" selection-start-line="78" selection-start-column="59" selection-end-line="78" selection-end-column="59" />
+            <state relative-caret-position="127">
+              <caret line="52" column="25" lean-forward="true" selection-start-line="52" selection-start-column="25" selection-end-line="52" selection-end-column="25" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Box.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/alienadventures/entity/Box.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="990">
+              <caret line="53" column="52" selection-start-line="53" selection-start-column="52" selection-end-line="53" selection-end-column="52" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -36,8 +65,8 @@
       <file leaf-file-name="World.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/alienadventures/World.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1892">
-              <caret line="101" column="66" selection-start-line="101" selection-start-column="66" selection-end-line="101" selection-end-column="66" />
+            <state relative-caret-position="374">
+              <caret line="29" column="25" selection-start-line="29" selection-start-column="25" selection-end-line="29" selection-end-column="25" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -48,8 +77,8 @@
       <file leaf-file-name="Rectangle.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/alienadventures/util/Rectangle.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="610">
-              <caret line="56" selection-start-line="56" selection-end-line="56" />
+            <state relative-caret-position="154">
+              <caret line="9" column="81" selection-start-line="9" selection-start-column="77" selection-end-line="9" selection-end-column="81" />
               <folding>
                 <element signature="e#783#784#0" expanded="true" />
                 <element signature="e#833#834#0" expanded="true" />
@@ -61,8 +90,8 @@
       <file leaf-file-name="Platform.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/alienadventures/block/Platform.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="330">
-              <caret line="20" column="19" selection-start-line="20" selection-start-column="19" selection-end-line="20" selection-end-column="19" />
+            <state relative-caret-position="154">
+              <caret line="11" column="35" selection-start-line="11" selection-start-column="35" selection-end-line="11" selection-end-column="35" />
               <folding>
                 <element signature="e#310#311#0" expanded="true" />
                 <element signature="e#343#344#0" expanded="true" />
@@ -71,48 +100,29 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Point.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/alienadventures/util/Point.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="352">
-              <caret line="20" column="43" selection-start-line="20" selection-start-column="43" selection-end-line="20" selection-end-column="43" />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="GameObject.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/alienadventures/entity/GameObject.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="858">
-              <caret line="50" column="19" selection-start-line="50" selection-start-column="19" selection-end-line="50" selection-end-column="19" />
+            <state relative-caret-position="220">
+              <caret line="16" column="11" selection-start-line="16" selection-start-column="11" selection-end-line="16" selection-end-column="11" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="e#453#454#0" expanded="true" />
+                <element signature="e#476#477#0" expanded="true" />
+                <element signature="e#832#833#0" expanded="true" />
+                <element signature="e#859#860#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="QuadTree.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="QuadTree.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/alienadventures/util/QuadTree.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="200">
+            <state relative-caret-position="770">
               <caret line="45" selection-start-line="45" selection-end-line="45" />
               <folding>
                 <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Particle.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/alienadventures/entity/Particle.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="814">
-              <caret line="45" column="18" selection-start-line="45" selection-start-column="18" selection-end-line="45" selection-end-column="18" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#282#283#0" expanded="true" />
-                <element signature="e#305#306#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -130,10 +140,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>resources.drawC</find>
-      <find>drawCentered</find>
-      <find>loadingan</find>
-      <find>g.drawImage(</find>
       <find>menustate</find>
       <find>sync</find>
       <find>copyI</find>
@@ -150,7 +156,6 @@
       <find>printnln</find>
       <find>new Color</find>
       <find>new Plat</find>
-      <find>new Particle</find>
       <find>intersects</find>
       <find>vel.x &gt; 0</find>
       <find>intersects(</find>
@@ -158,8 +163,13 @@
       <find>java.awt.</find>
       <find>isEmpty(</find>
       <find>if (is</find>
-      <find>println</find>
       <find>for (int</find>
+      <find>tree.show</find>
+      <find>duc</find>
+      <find>ducking</find>
+      <find>new Particle</find>
+      <find>println</find>
+      <find>new player</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -191,14 +201,15 @@
         <option value="$PROJECT_DIR$/src/com/alienadventures/util/Point.java" />
         <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/assets/data/sheets_cos/cos.py" />
-        <option value="$PROJECT_DIR$/src/com/alienadventures/Resources.java" />
-        <option value="$PROJECT_DIR$/src/com/alienadventures/block/Platform.java" />
-        <option value="$PROJECT_DIR$/src/com/alienadventures/entity/GameObject.java" />
         <option value="$PROJECT_DIR$/src/com/alienadventures/entity/Particle.java" />
-        <option value="$PROJECT_DIR$/src/com/alienadventures/entity/Player.java" />
-        <option value="$PROJECT_DIR$/src/com/alienadventures/World.java" />
         <option value="$PROJECT_DIR$/src/com/alienadventures/util/Rectangle.java" />
         <option value="$PROJECT_DIR$/src/com/alienadventures/util/QuadTree.java" />
+        <option value="$PROJECT_DIR$/src/com/alienadventures/block/Platform.java" />
+        <option value="$PROJECT_DIR$/src/com/alienadventures/entity/GameObject.java" />
+        <option value="$PROJECT_DIR$/src/com/alienadventures/Resources.java" />
+        <option value="$PROJECT_DIR$/src/com/alienadventures/entity/Box.java" />
+        <option value="$PROJECT_DIR$/src/com/alienadventures/World.java" />
+        <option value="$PROJECT_DIR$/src/com/alienadventures/entity/Player.java" />
       </list>
     </option>
   </component>
@@ -216,7 +227,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
       <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
@@ -321,6 +331,7 @@
         </subPane>
       </pane>
       <pane id="AndroidView" />
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -443,7 +454,14 @@
       <option name="project" value="LOCAL" />
       <updated>1531941781896</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="Fixed the stupid issue.">
+      <created>1531958926586</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1531958926586</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -452,6 +470,7 @@
     <layout>
       <window_info anchor="right" id="Palette" order="3" />
       <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Messages" order="7" weight="0.36752138" />
       <window_info anchor="right" id="Palette&#9;" order="3" />
       <window_info id="Image Layers" order="2" />
       <window_info anchor="right" id="Capture Analysis" order="3" />
@@ -462,16 +481,15 @@
       <window_info anchor="bottom" id="Terminal" order="9" />
       <window_info id="Capture Tool" order="2" />
       <window_info id="Designer" order="2" />
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.17986578" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.1852349" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.24966443" />
       <window_info id="UI Designer" order="2" />
       <window_info anchor="right" id="Theme Preview" order="3" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.3988604" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="Messages" order="7" weight="0.36752138" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
@@ -517,21 +535,19 @@
     <MESSAGE value="Looking good. Menu improvements (buttons with text), loading screen..." />
     <MESSAGE value="Player images. Animation and SingleImage classes work. Flipped images also work." />
     <MESSAGE value="Slide" />
-    <option name="LAST_COMMIT_MESSAGE" value="Slide" />
+    <MESSAGE value="Fixed the stupid issue." />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed the stupid issue." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="2" />
+      <option name="time" value="3" />
     </breakpoint-manager>
   </component>
+  <component name="antWorkspaceConfiguration">
+    <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />
+    <option name="FILTER_TARGETS" value="false" />
+  </component>
   <component name="editorHistoryManager">
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_161/src.zip!/java/lang/Math.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="137" column="25" selection-start-line="137" selection-start-column="25" selection-end-line="137" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://C:/Program Files/Java/jdk1.8.0_161/src.zip!/java/lang/Override.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="501">
@@ -550,9 +566,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/assets/data/sheets_cos/enemy_sheet_cos.txt">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assets/data/sheets_cos/misc_sheet_cos.txt">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/assets/data/story_cos/1_cos.txt">
@@ -600,12 +613,6 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/assets/data/sheets_cos/misc2_sheet_cos.txt">
       <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assets/images/sheets/misc_sheet.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assets/images/sheets/player_sheet.png">
-      <provider selected="true" editor-type-id="images" />
     </entry>
     <entry file="jar://C:/Program Files/Java/jdk1.8.0_161/src.zip!/java/awt/Graphics2D.java">
       <provider selected="true" editor-type-id="text-editor">
@@ -660,11 +667,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="398">
           <caret line="37" column="32" lean-forward="true" selection-start-line="37" selection-start-column="32" selection-end-line="37" selection-end-column="32" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#389#390#0" expanded="true" />
-            <element signature="e#449#450#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -672,9 +674,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="176">
           <caret line="11" column="39" selection-start-line="11" selection-start-column="39" selection-end-line="11" selection-end-column="39" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -689,13 +688,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-792">
           <caret line="16" column="7" selection-start-line="16" selection-start-column="7" selection-end-line="16" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assets/data/sheets_cos/player_sheet_cos.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="176">
-          <caret line="8" column="11" lean-forward="true" selection-start-line="8" selection-start-column="11" selection-end-line="8" selection-end-column="11" />
         </state>
       </provider>
     </entry>
@@ -751,13 +743,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/alienadventures/Resources.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="127">
-          <caret line="82" column="36" lean-forward="true" selection-start-line="82" selection-start-column="36" selection-end-line="82" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/alienadventures/Game.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="478">
@@ -775,31 +760,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/alienadventures/block/Platform.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="20" column="19" selection-start-line="20" selection-start-column="19" selection-end-line="20" selection-end-column="19" />
-          <folding>
-            <element signature="e#310#311#0" expanded="true" />
-            <element signature="e#343#344#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://C:/Program Files/Java/jdk1.8.0_161/src.zip!/java/awt/Shape.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="610">
           <caret line="233" column="20" selection-start-line="233" selection-start-column="20" selection-end-line="233" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/alienadventures/entity/GameObject.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="858">
-          <caret line="50" column="19" selection-start-line="50" selection-start-column="19" selection-end-line="50" selection-end-column="19" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -829,30 +793,29 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/alienadventures/entity/Player.java">
+    <entry file="file://$PROJECT_DIR$/assets/images/sheets/player_sheet.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/alienadventures/util/QuadTree.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1386">
-          <caret line="78" column="59" selection-start-line="78" selection-start-column="59" selection-end-line="78" selection-end-column="59" />
+        <state relative-caret-position="770">
+          <caret line="45" selection-start-line="45" selection-end-line="45" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/alienadventures/World.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1892">
-          <caret line="101" column="66" selection-start-line="101" selection-start-column="66" selection-end-line="101" selection-end-column="66" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
+    <entry file="file://$PROJECT_DIR$/assets/data/sheets_cos/misc_sheet_cos.txt">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/images/sheets/misc_sheet.png">
+      <provider selected="true" editor-type-id="images" />
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/alienadventures/util/Rectangle.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="610">
-          <caret line="56" selection-start-line="56" selection-end-line="56" />
+        <state relative-caret-position="154">
+          <caret line="9" column="81" selection-start-line="9" selection-start-column="77" selection-end-line="9" selection-end-column="81" />
           <folding>
             <element signature="e#783#784#0" expanded="true" />
             <element signature="e#833#834#0" expanded="true" />
@@ -860,10 +823,69 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/alienadventures/util/QuadTree.java">
+    <entry file="file://$PROJECT_DIR$/src/com/alienadventures/entity/Box.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="200">
-          <caret line="45" selection-start-line="45" selection-end-line="45" />
+        <state relative-caret-position="990">
+          <caret line="53" column="52" selection-start-line="53" selection-start-column="52" selection-end-line="53" selection-end-column="52" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/alienadventures/block/Platform.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="154">
+          <caret line="11" column="35" selection-start-line="11" selection-start-column="35" selection-end-line="11" selection-end-column="35" />
+          <folding>
+            <element signature="e#310#311#0" expanded="true" />
+            <element signature="e#343#344#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/alienadventures/entity/GameObject.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="220">
+          <caret line="16" column="11" selection-start-line="16" selection-start-column="11" selection-end-line="16" selection-end-column="11" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#453#454#0" expanded="true" />
+            <element signature="e#476#477#0" expanded="true" />
+            <element signature="e#832#833#0" expanded="true" />
+            <element signature="e#859#860#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/alienadventures/Resources.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1166">
+          <caret line="65" column="76" selection-start-line="65" selection-start-column="76" selection-end-line="65" selection-end-column="76" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/data/sheets_cos/player_sheet_cos.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="308">
+          <caret line="14" column="11" selection-start-line="14" selection-start-column="11" selection-end-line="14" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/alienadventures/World.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="29" column="25" selection-start-line="29" selection-start-column="25" selection-end-line="29" selection-end-column="25" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/alienadventures/entity/Player.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="127">
+          <caret line="52" column="25" lean-forward="true" selection-start-line="52" selection-start-column="25" selection-end-line="52" selection-end-column="25" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

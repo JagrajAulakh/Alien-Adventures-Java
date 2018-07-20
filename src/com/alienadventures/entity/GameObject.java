@@ -2,12 +2,14 @@ package com.alienadventures.entity;
 
 import com.alienadventures.Camera;
 import com.alienadventures.World;
+import com.alienadventures.image.ImageType;
 import com.alienadventures.util.Rectangle;
 import com.alienadventures.util.Vector;
 
 import java.awt.*;
 
 public abstract class GameObject {
+	protected ImageType image;
 	protected double x, y, width, height;
 	protected Vector vel, acc;
 	protected Rectangle hitBox;
