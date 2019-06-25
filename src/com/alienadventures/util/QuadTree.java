@@ -3,9 +3,10 @@ import com.alienadventures.Camera;
 import com.alienadventures.Game;
 
 import java.awt.*;
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class QuadTree {
+public class QuadTree implements Serializable {
 	private int capacity;
 	private QuadTree[] nodes;
 	private ArrayList<Rectangle> rectangles = new ArrayList<Rectangle>();

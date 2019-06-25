@@ -67,9 +67,9 @@ public abstract class GameObject {
 		acc.set(0, World.GRAVITY * factor);
 	}
 
-	public double screenX(Camera offset) { return offset == null ? this.x : this.x - offset.getOffsetX(); }
+	public double screenX(Camera camera) { return camera == null ? this.x : this.x - camera.getOffsetX(); }
 
-	public double screenY(Camera offset) { return offset == null ? this.y : this.y - offset.getOffsetY(); }
+	public double screenY(Camera camera) { return camera == null ? this.y : this.y - camera.getOffsetY(); }
 
 	protected boolean collides(GameObject other) {
 		return other.hitBox.intersects(hitBox);

@@ -1,6 +1,8 @@
 package com.alienadventures.util;
 
-public class Rectangle {
+import java.io.Serializable;
+
+public class Rectangle implements Serializable {
 	private double x, y, width, height;
 	private Object data;
 

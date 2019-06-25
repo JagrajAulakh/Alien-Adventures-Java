@@ -4,6 +4,7 @@ import com.alienadventures.Camera;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.io.Serializable;
 
 public class Image extends ScreenObject {
 

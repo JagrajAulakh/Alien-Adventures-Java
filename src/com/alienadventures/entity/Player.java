@@ -118,12 +118,11 @@ public class Player extends GameObject {
 				if (o instanceof Platform) {
 					if (vel.y > 0) {
 						if (vel.y > 5) {
-							for (int i = 0; i < vel.y * 2 / 3; i++) {
-								PlayState.world.addObject(new Particle(getCenterX(), getCenterY()));
+							for (int i = 0; i < Math.pow(2, vel.y/6.0); i++) {
+								PlayState.world.addObject(new Particle(getCenterX(), getCenterY(), type));
 							}
 						}
 						y = o.getY() - height;
-						System.out.println(vel.y);
 						vel.y = acc.y = 0;
 						onGround = true;
 					} else if (vel.y < 0) {
@@ -205,5 +204,10 @@ public class Player extends GameObject {
 		double x = screenX(camera) + this.width / 2;
 		double y = screenY(camera) + this.height;
 		Resources.drawCentered(g, image.getImage(), (int)x, (int)(y - image.getImage().getHeight() / 2));
+	}
+
+	@Override
+	public String toString() {
+		return "{X: " + this.x + ", Y: " + this.y + "}";
 	}
 }

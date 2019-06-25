@@ -20,6 +20,7 @@ public class Resources {
 	public static BufferedImage fontSheet, buttonSheet, miscSheet, playerSheet;
 	public static ArrayList<BufferedImage> buttonImages;
 	public static ArrayList<ImageType[]> playerImages;
+	public static Color[][] playerColors;
 
 	public static synchronized void load() throws IOException {
 		new LetterMaker();
@@ -38,7 +39,7 @@ public class Resources {
 		miscSheet = ImageIO.read(new File("images/sheets/misc_sheet.png"));
 		ArrayList<int[]> miscCo = Reader.getCo("data/sheets_cos/button_sheet_cos.txt");
 		fireBallImage = scale(miscSheet.getSubimage(112, 80, 16, 16), 4);
-		boxImage = scale(getImage(miscSheet, new int[] {0, 192, 16, 16}), SCALE);
+		boxImage = scale(getImage(miscSheet, new int[]{0, 192, 16, 16}), SCALE);
 
 		ArrayList<ImageType> playerImageList = new ArrayList<ImageType>();
 		playerSheet = ImageIO.read(new File("images/sheets/player_sheet.png"));
@@ -89,7 +90,27 @@ public class Resources {
 			playerImageList.add(img);
 		}
 		playerImages = insertFlipped(playerImageList);
+		playerColors = new Color[5][3];
 
+		playerColors[0][0] = new Color(107, 190, 0);
+		playerColors[0][1] = new Color(176, 250, 20);
+		playerColors[0][2] = new Color(70, 128, 0);
+
+		playerColors[1][0] = new Color(0, 137, 220);
+		playerColors[1][1] = new Color(93, 210, 255);
+		playerColors[1][2] = new Color(70, 128, 0);
+
+		playerColors[2][0] = new Color(197, 93, 219);
+		playerColors[2][1] = new Color(255, 171, 199);
+		playerColors[2][2] = new Color(70, 128, 0);
+
+		playerColors[3][0] = new Color(240, 201, 0);
+		playerColors[3][1] = new Color(255, 239, 133);
+		playerColors[3][2] = new Color(70, 128, 0);
+
+		playerColors[4][0] = new Color(190, 169, 106);
+		playerColors[4][1] = new Color(255, 209, 169);
+		playerColors[4][2] = new Color(70, 128, 0);
 
 //		try { Thread.sleep(2000); } catch (InterruptedException e) { e.printStackTrace(); }
 	}
@@ -100,8 +121,8 @@ public class Resources {
 
 	private static ArrayList<ImageType[]> insertFlipped(ArrayList<ImageType> source) {
 		ArrayList<ImageType[]> flipped = new ArrayList<ImageType[]>();
-		for (ImageType i:source) {
-			ImageType[] parts = new ImageType[] {i, i.flip(true, false)};
+		for (ImageType i : source) {
+			ImageType[] parts = new ImageType[]{i, i.flip(true, false)};
 			flipped.add(parts);
 		}
 		return flipped;

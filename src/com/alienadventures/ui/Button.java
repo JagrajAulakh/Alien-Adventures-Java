@@ -4,18 +4,15 @@ import com.alienadventures.Camera;
 import com.alienadventures.Resources;
 import com.alienadventures.input.Input;
 
+import static com.alienadventures.ui.ButtonManager.State;
+
 import java.awt.*;
 import java.awt.image.BufferedImage;
+
 
 public class Button extends ScreenObject {
 	public static final int WIDTH = 32;
 	public static final int HEIGHT = 32;
-
-	private enum State {
-		NORMAL,
-		HOVER,
-		CLICKED
-	}
 
 	private State state;
 	private BufferedImage normalImage, hoverImage, clickedImage;
@@ -64,6 +61,10 @@ public class Button extends ScreenObject {
 		} else {
 			state = State.NORMAL;
 		}
+	}
+
+	public State getState() {
+		return state;
 	}
 
 	@Override

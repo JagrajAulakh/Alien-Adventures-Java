@@ -1,11 +1,24 @@
 package com.alienadventures.io;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Reader {
+
+	public static Object readBinaryFile(String path) throws IOException {
+		ObjectInputStream in = new ObjectInputStream(new FileInputStream(path));
+		try {
+			return in.readObject();
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+		return null;
+
+	}
 	public static String readFile(String path) throws IOException {
 		String tot = "";
 		Scanner file = new Scanner(new File(path));

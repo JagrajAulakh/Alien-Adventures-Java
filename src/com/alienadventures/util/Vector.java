@@ -1,6 +1,8 @@
 package com.alienadventures.util;
 
-public class Vector {
+import java.io.Serializable;
+
+public class Vector implements Serializable {
 	public double x, y;
 
 	public Vector() {

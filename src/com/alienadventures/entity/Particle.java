@@ -2,6 +2,7 @@ package com.alienadventures.entity;
 
 import com.alienadventures.Camera;
 import com.alienadventures.Game;
+import com.alienadventures.Resources;
 import com.alienadventures.World;
 
 import java.awt.*;
@@ -14,25 +15,33 @@ public class Particle extends GameObject {
 		this(x, y, null);
 	}
 
-	public Particle(double x, double y, Color color) {
-		super(x, y);
-		setWidth(10);
-		setHeight(10);
+	public Particle(double x, double y, int type) {
+		super(x, y, 10, 10);
 		setVel(Math.random() * 10 - 5, Math.random() * 10 - 5);
-		life = (int)(Math.random() * 60);
+		life = randomLife();
+		color = makeColor(type);
+	}
 
-		if (color == null) {
-			double r = Math.random();
-			if (r <= 0.4) {
-				this.color = new Color(107, 190, 0, 255);
-			} else if (r <= 0.7) {
-				this.color = new Color(176, 250, 20, 255);
-			} else {
-				this.color = new Color(70, 128, 0, 255);
-			}
+	public Particle(double x, double y, Color color) {
+		super(x, y, 10, 10);
+		setVel(Math.random() * 10 - 5, Math.random() * 10 - 5);
+		life = randomLife();
+		this.color = color;
+	}
+
+	private int randomLife() { return (int)(Math.random() * 60); }
+
+	private Color makeColor(int type) {
+		Color c;
+		double r = Math.random();
+		if (r <= 0.4) {
+			c = Resources.playerColors[type][0];
+		} else if (r <= 0.7) {
+			c = Resources.playerColors[type][1];
 		} else {
-			this.color = color;
+			c = Resources.playerColors[type][2];
 		}
+		return c;
 	}
 
 	public boolean dead() {

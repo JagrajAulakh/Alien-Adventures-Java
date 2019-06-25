@@ -27,7 +27,6 @@ public class World {
 
 	public World() {
 		camera = new Camera();
-		player = new Player(Player.PLAYER_BROWN);
 		objects = new ArrayList<GameObject>();
 		toRemove = new ArrayList<GameObject>();
 
@@ -41,11 +40,13 @@ public class World {
 	}
 
 	private void loadWorld() {
+		player = new Player(Player.PLAYER_BROWN);
 		for (int i = 0; i < 10; i++) {
 			Particle p = new Particle(player.getX() + player.getWidth() / 2, player.getY() + player.getHeight() / 2);
 			objects.add(p);
 		}
 		objects.add(new Platform(0, Game.HEIGHT / 2, Game.WIDTH, 50));
+		camera.centerOn(player, false);
 //		try { Thread.sleep(2000); } catch (InterruptedException e) { e.printStackTrace(); }
 	}
 
