@@ -10,6 +10,7 @@ public class ButtonManager {
 	enum State {
 		NORMAL,
 		HOVER,
+		HELD,
 		CLICKED
 	}
 
@@ -44,6 +45,11 @@ public class ButtonManager {
 			if (b.getState() == State.CLICKED) {
 				for (ObjectListener l : listeners) {
 					l.clicked(b);
+				}
+			}
+			if (b.getState() == State.HELD) {
+				for (ObjectListener l : listeners) {
+					l.held(b);
 				}
 			} else if (b.getState() == State.HOVER) {
 				for (ObjectListener l : listeners) {

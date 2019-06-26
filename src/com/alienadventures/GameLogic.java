@@ -7,7 +7,7 @@ import java.awt.*;
 import java.awt.event.KeyEvent;
 
 public class GameLogic {
-	private GameStateManager gsm;
+	public static GameStateManager gsm;
 	public GameLogic() {
 		gsm = new GameStateManager();
 		gsm.push(new MenuState(true));

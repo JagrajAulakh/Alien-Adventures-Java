@@ -2,6 +2,7 @@ package com.alienadventures.state;
 
 import com.alienadventures.Camera;
 import com.alienadventures.Game;
+import com.alienadventures.GameLogic;
 import com.alienadventures.Resources;
 import com.alienadventures.entity.Particle;
 import com.alienadventures.input.Input;
@@ -14,25 +15,25 @@ import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 
 public class MenuState implements GameState, ObjectListener {
-
+	
 	private ParticleManager particles;
 	private ArrayList<ScreenObject> objects;
 	private ButtonManager buttons;
 	private boolean intro;
 	private int scrollCounter, h;
 	private Camera camera;
-
+	
 	public MenuState() {
 		this(true);
 	}
-
+	
 	public MenuState(boolean intro) {
 		camera = new Camera();
 		particles = new ParticleManager();
 		objects = new ArrayList<ScreenObject>();
 		buttons = new ButtonManager();
 		buttons.addListener(this);
-
+		
 		this.intro = intro;
 		h = Game.HEIGHT;
 		if (intro) {
@@ -43,29 +44,42 @@ public class MenuState implements GameState, ObjectListener {
 		}
 		makeObjects();
 	}
-
-	private int screenX(double x) { return (int)(x - camera.getOffsetX()); }
-
-	private int screenY(double y) { return (int)(y - camera.getOffsetY()); }
-
+	
+	private int screenX(double x) {
+		return (int) (x - camera.getOffsetX());
+	}
+	
+	private int screenY(double y) {
+		return (int) (y - camera.getOffsetY());
+	}
+	
 	private void makeObjects() {
 		objects.add(new Image(Resources.titleBanner, 13.5f, 0.5f));
 		buttons.add(new Button(20f, 8f, "START", 0));
 		buttons.add(new Button(20f, 11f, "OPTIONS", 0));
 	}
-
+	
 	@Override
 	public void clicked(ScreenObject obj) {
 		if (obj instanceof Button) {
-
+			Button button = (Button) obj;
+			if (button.getText().toLowerCase().equals("start")) {
+				System.out.println(button.getState());
+				GameLogic.gsm.push(new PlayState());
+			}
 		}
 	}
-
+	
 	@Override
 	public void hovered(ScreenObject obj) {
-
+	
 	}
-
+	
+	@Override
+	public void held(ScreenObject obj) {
+	
+	}
+	
 	@Override
 	public void update() {
 		if (Input.keyUpOnce(KeyEvent.VK_ESCAPE)) {
@@ -78,7 +92,7 @@ public class MenuState implements GameState, ObjectListener {
 				particles.add(new Particle(x, y));
 			}
 		}
-
+		
 		if (intro) {
 			if (scrollCounter < 0) { // THIS IS TITLE
 				scrollCounter += 2;
@@ -93,36 +107,36 @@ public class MenuState implements GameState, ObjectListener {
 				}
 			}
 		}
-
+		
 		particles.update();
 		buttons.update();
 		for (ScreenObject obj : objects) {
 			obj.update();
 		}
 	}
-
+	
 	@Override
 	public void render(Graphics g) {
-		Graphics2D g2d = (Graphics2D)g.create();
-
+		Graphics2D g2d = (Graphics2D) g.create();
+		
 		if (-400 <= scrollCounter && scrollCounter <= -300) {
 			double i = (scrollCounter + 400.0) / 100.0 * 255;
-			g2d.drawImage(Resources.darken(Resources.menuBack, 255 - (int)i), 0 - (int)(camera.getOffsetX() / 10), -128 - (int)(camera.getOffsetY() / 10), null);
+			g2d.drawImage(Resources.darken(Resources.menuBack, 255 - (int) i), 0 - (int) (camera.getOffsetX() / 10), -128 - (int) (camera.getOffsetY() / 10), null);
 		} else {
-			g2d.drawImage(Resources.menuBack, 0 - (int)(camera.getOffsetX() / 10), -128 - (int)(camera.getOffsetY() / 10), null);
+			g2d.drawImage(Resources.menuBack, 0 - (int) (camera.getOffsetX() / 10), -128 - (int) (camera.getOffsetY() / 10), null);
 		}
-
+		
 		if (intro) {
 			float opacity = 1f;
 			if (scrollCounter < 0) {
 				if (scrollCounter < -300) opacity = 0;
 				if (-300 <= scrollCounter && scrollCounter <= -200) {
-					opacity = (float)(scrollCounter + 300) / 100f;
+					opacity = (float) (scrollCounter + 300) / 100f;
 				}
 			}
 			g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, opacity));
 			double i = 5 * Math.sin(Math.toRadians(Game.frameCount * 4));
-			Resources.drawCentered(g2d, Resources.titleImage, screenX(Game.WIDTH / 2), screenY(-Game.HEIGHT / 2) + (int)i);
+			Resources.drawCentered(g2d, Resources.titleImage, screenX(Game.WIDTH / 2), screenY(-Game.HEIGHT / 2) + (int) i);
 		}
 
 //		for (ScreenObject obj : objects) {
@@ -131,7 +145,7 @@ public class MenuState implements GameState, ObjectListener {
 		buttons.render(g, camera);
 		particles.render(g, camera);
 
-//		Resources.drawCentered(g, LetterMaker.makeSentence("TEST SENT", 4), Game.WIDTH / 2, Game.HEIGHT / 2);
+		Resources.drawCentered(g, LetterMaker.makeSentence("TEST SENT", 4), Game.WIDTH / 2, Game.HEIGHT / 2);
 
 //		g.setColor(new Color(0, 0, 0, 50));
 //		for (int x = 0; x < Game.WIDTH; x += Button.WIDTH) {
