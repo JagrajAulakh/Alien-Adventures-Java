@@ -54,13 +54,14 @@ public class LetterMaker {
 		char[] chars = sent.toCharArray();
 		for (int i = 0; i < chars.length; i++) {
 			char letter = chars[i];
+			int letterIndex = letters.indexOf(letter);
 			if (letter == ' ') {
 				x += SPACE_LENGTH * scale;
 			} else {
-				int px = i * 8;
-				BufferedImage letterImg = Resources.scale(Resources.fontSheet.getSubimage(px, 0, sizes[i], 8), scale);
+				int px = letterIndex * 8;
+				BufferedImage letterImg = Resources.scale(Resources.fontSheet.getSubimage(px, 0, sizes[letterIndex], 8), scale);
 				g.drawImage(letterImg, x, 0, null);
-				x += sizes[letters.indexOf(letter)] * scale;
+				x += sizes[letterIndex] * scale;
 			}
 		}
 		g.dispose();
