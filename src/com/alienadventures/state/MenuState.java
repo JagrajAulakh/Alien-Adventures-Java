@@ -74,7 +74,6 @@ public class MenuState implements GameState, ObjectListener {
 			if (button.getText().toLowerCase().equals("start")) {
 				GameLogic.gsm.push(new PlayState());
 			} else if (button.getText().toLowerCase().equals("options")) {
-				System.out.println("ADDED WINDOW");
 				windows.add(new Window(128, 128, "OPTIONS"));
 			}
 		}

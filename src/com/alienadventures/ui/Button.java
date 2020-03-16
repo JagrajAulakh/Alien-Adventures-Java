@@ -77,10 +77,12 @@ public class Button extends ScreenObject {
 				state = State.HELD;
 			} else {
 				state = State.HOVER;
+//				if (prevState == State.NORMAL) Resources.hoverSound.play();
 			}
 			
 			if (prevState == State.HELD && Input.mouseUp(0)) {
 				state = State.CLICKED;
+				Resources.clickSound.play();
 			}
 		} else {
 			state = State.NORMAL;
