@@ -23,6 +23,8 @@ public class World {
 	private ArrayList<GameObject> objects, toRemove;
 	private Camera camera;
 	private Player player;
+	private GameObject platform;
+	private double scale = 1;
 	private static Thread loadingThread;
 
 	public World() {
@@ -45,7 +47,8 @@ public class World {
 			Particle p = new Particle(player.getX() + player.getWidth() / 2, player.getY() + player.getHeight() / 2);
 			objects.add(p);
 		}
-		objects.add(new Platform(0, Game.HEIGHT / 2, Game.WIDTH, 50));
+		platform = new Platform(0, Game.HEIGHT / 2, Game.WIDTH, 50);
+		objects.add(platform);
 		camera.centerOn(player, false);
 //		try { Thread.sleep(2000); } catch (InterruptedException e) { e.printStackTrace(); }
 	}
@@ -70,6 +73,8 @@ public class World {
 			} else if (Input.keyDown(KeyEvent.VK_LEFT)) {
 				camera.setX(camera.getOffsetX() - 10);
 			}
+			if (Input.keyUpOnce(KeyEvent.VK_EQUALS)) scale += 0.05;
+			if (Input.keyUpOnce(KeyEvent.VK_MINUS)) scale -= 0.05;
 			for (GameObject o : toRemove) {
 				objects.remove(o);
 			}
@@ -83,7 +88,7 @@ public class World {
 				tree.insert(new Rectangle(o.getX(), o.getY(), o.getWidth(), o.getHeight(), o));
 			}
 			player.update();
-			camera.centerOn(player);
+			camera.centerOn(player, true);
 		}
 	}
 
@@ -103,17 +108,19 @@ public class World {
 			g2d.drawRect(screenX(range.getX()), screenY(range.getY()), (int)range.getWidth(), (int)range.getHeight());
 			ArrayList<Rectangle> rects = tree.query(range);
 
+			g2d.scale(scale, scale);
+//			g2d.translate(-Game.WIDTH/4, -Game.HEIGHT/4);
+//			g2d.translate(100, 100);
 			for (Rectangle r : rects) {
 				GameObject o = (GameObject)r.getData();
-				o.render(g, camera);
+				o.render(g2d, camera);
 				g.setColor(Color.GREEN);
-//				o.drawHitBox((Graphics2D)g.create(), camera);
 			}
-			player.render(g, camera);
-//			player.drawHitBox((Graphics2D)g.create(), camera);
-			g.setColor(new Color(255, 100, 255));
-			g.setColor(Color.RED);
-//			tree.show(g, camera);
+			player.render(g2d, camera);
+//			player.drawHitBox(g2d, camera);
+			g2d.setColor(new Color(255, 100, 255));
+			g2d.setColor(Color.RED);
+//			tree.show(g2d, camera);
 		}
 	}
 }

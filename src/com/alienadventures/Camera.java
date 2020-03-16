@@ -28,9 +28,12 @@ public class Camera {
 
 	public void centerOn(GameObject obj) { centerOn(obj, true); }
 	public void centerOn(GameObject obj, boolean interpolation) {
+		centerOn(obj.getX(), obj.getY(), interpolation);
+	}
+	public void centerOn(double wx, double wy, boolean interpolation) {
 		double goBy = interpolation ? 1.0/10 : 1.0;
-		double newOffsetX = obj.getX() - Game.WIDTH/2;
-		double newOffsetY = obj.getY() - Game.HEIGHT/2;
+		double newOffsetX = wx - Game.WIDTH/2;
+		double newOffsetY = wy - Game.HEIGHT/2;
 		offset.x += (newOffsetX - offset.x)*goBy;
 		offset.y += (newOffsetY - offset.y)*goBy;
 	}
