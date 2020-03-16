@@ -146,7 +146,6 @@ public class Player extends GameObject {
 		applyGravity(1);
 		setAccX(0);
 		ducking = false;
-		System.out.println(vel.x);
 		if (Input.keyDown(KeyEvent.VK_S)) {
 			if (onGround) {
 				ducking = true;

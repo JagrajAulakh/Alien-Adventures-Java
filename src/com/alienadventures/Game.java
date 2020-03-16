@@ -14,6 +14,9 @@ import java.io.IOException;
 public class Game extends Canvas {
 	public static final int WIDTH = 960;
 	public static final int HEIGHT = 640;
+	
+	private static final boolean RUNNINGLINUX = System.getProperty("os.name").toLowerCase().contains("linux");
+	
 	public static int frameCount = 0;
 	private GameLogic logic;
 	private JFrame frame;
@@ -118,7 +121,11 @@ public class Game extends Canvas {
 			return;
 		}
 		Graphics g = bs.getDrawGraphics();
-
+		
+		if (running) {
+			getToolkit().sync();
+		}
+		
 		if (loading) {
 			loadingAnimation(g);
 		} else {

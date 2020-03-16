@@ -60,8 +60,6 @@ public class Button extends ScreenObject {
 	@Override
 	public void update() {
 		Rectangle screenBounds = new Rectangle((int)(-camera.getOffsetX() + getX()), (int)(-camera.getOffsetY() + getY()), (int)getWidth(), (int)getHeight());
-		System.out.println("X: " + Double.toString(camera.getOffsetX()) + ", Y: " + Double.toString(camera.getOffsetY()));
-		int x = 1;
 		if (screenBounds.contains(Input.mx, Input.my)) {
 			if (Input.mousePressed(0)) {
 				state = State.HELD;

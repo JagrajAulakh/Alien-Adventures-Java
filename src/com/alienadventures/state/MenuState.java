@@ -64,7 +64,6 @@ public class MenuState implements GameState, ObjectListener {
 		if (obj instanceof Button) {
 			Button button = (Button) obj;
 			if (button.getText().toLowerCase().equals("start")) {
-//				System.out.println(button.getState());
 				GameLogic.gsm.push(new PlayState());
 			}
 		}
