@@ -45,6 +45,7 @@ public class LetterMaker {
 	}
 
 	public static BufferedImage makeSentence(String sent, double scale) {
+		sent = sent.toUpperCase();
 		int width = calculateWidth(sent, scale);
 		int height = (int)Math.round(8 * scale);
 		BufferedImage img = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);

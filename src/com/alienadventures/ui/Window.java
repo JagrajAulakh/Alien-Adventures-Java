@@ -1,33 +1,37 @@
 package com.alienadventures.ui;
 
-import com.alienadventures.Camera;
-import com.alienadventures.Game;
-import com.alienadventures.Resources;
-import com.alienadventures.image.Animation;
+import com.alienadventures.*;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
-public class Window extends ScreenObject {
+public class Window extends ScreenObject implements ObjectListener {
 	
 	private ArrayList<ScreenObject> objects;
+	private Button xButton;
 	private Camera windowCamera;
 	private int animationCounter, animationCounterMax;
 	private BufferedImage winSurf;
-	private Graphics gWin;
+	private Graphics2D gWin;
+	private String title;
+	private boolean killmyself, killing;
 	double scale;
 	
-	public Window(int x, int y) {
+	public Window(int x, int y) { this(x, y, ""); }
+	public Window(int x, int y, String title) {
 		objects = new ArrayList<ScreenObject>();
 		windowCamera = new Camera(-x, -y);
-		animationCounter = 0;
-		animationCounterMax = 40;
+		this.title = title;
+		animationCounter = 2;
+		animationCounterMax = 30;
 		scale = 0.01;
 		winSurf = new BufferedImage(Game.WIDTH, Game.HEIGHT, BufferedImage.TYPE_INT_ARGB);
-		gWin = winSurf.getGraphics();
+		gWin = (Graphics2D) winSurf.getGraphics();
+		killmyself = killing = false;
 		
-		addElement(new Button(500, 100, " ", 7, this));
+		xButton = new Button(Resources.buttonImages.get(24).getWidth() - 10 * 4, -2 * 4, " ", 7, this);
+		addElement(xButton);
 		addElement(new Button(3.0f, 3.0f, "TESTING", 0, this));
 	}
 	
@@ -39,28 +43,65 @@ public class Window extends ScreenObject {
 		return windowCamera;
 	}
 	
+	public boolean isDead() {
+		return killmyself;
+	}
+	
+	public void kill() {
+		killing = true;
+		animationCounter--;
+	}
+	
 	@Override
 	public void update() {
-		if (animationCounter < animationCounterMax) {
-			animationCounter++;
-			scale += (1 - scale) / 10;
+		if (killing) System.out.println(animationCounter);
+		if (2 <= animationCounter && animationCounter < animationCounterMax) {
+			animationCounter += killing ? -1 : 1;
+			double k = (2*Math.PI)/(Math.PI - Math.asin(1/1.1));
+			scale = 1.1 * Math.sin((2*Math.PI)*animationCounter / (k*animationCounterMax));
 		} else {
-			for (ScreenObject obj : objects) {
-				obj.update();
+			if (killing) killmyself = true;
+			else {
+				for (ScreenObject obj : objects) {
+					obj.update();
+				}
 			}
 		}
-		gWin = winSurf.getGraphics();
+		if (xButton.getState() == ButtonManager.State.CLICKED) {
+			kill();
+			xButton.setState(ButtonManager.State.NORMAL);
+		}
+		gWin = (Graphics2D) winSurf.getGraphics();
 	}
 	
 	@Override
 	public void render(Graphics g, Camera camera) {
+		gWin.setBackground(new Color(0, 0, 0, 0));
+		gWin.clearRect(0, 0, winSurf.getWidth(), winSurf.getHeight());
+		
 		gWin.drawImage(Resources.buttonImages.get(24), -(int) windowCamera.getOffsetX(), -(int) windowCamera.getOffsetY(), null);
+		gWin.drawImage(LetterMaker.makeSentence(title, 2), -(int)windowCamera.getOffsetX() + 16, -(int)windowCamera.getOffsetY()+4, null);
 		for (ScreenObject obj : objects) {
 			obj.render(gWin, windowCamera);
 		}
 		gWin.dispose();
-		g.setColor(new Color(0, 0, 0, animationCounter*3));
+		g.setColor(new Color(0, 0, 0, animationCounter * 3));
 		g.fillRect(0, 0, winSurf.getWidth(), winSurf.getHeight());
 		Resources.drawCentered(g, animationCounter == animationCounterMax ? winSurf : Resources.scale(winSurf, scale), Game.WIDTH / 2, Game.HEIGHT / 2);
+	}
+	
+	@Override
+	public void clicked(ScreenObject obj) {
+	
+	}
+	
+	@Override
+	public void hovered(ScreenObject obj) {
+	
+	}
+	
+	@Override
+	public void held(ScreenObject obj) {
+	
 	}
 }

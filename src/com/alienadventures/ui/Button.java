@@ -39,7 +39,6 @@ public class Button extends ScreenObject {
 	
 	public Button(int x, int y, BufferedImage image, int type, Camera camera) {
 		super(x, y, Resources.buttonImages.get(type * 3).getWidth(), Resources.buttonImages.get(type * 3).getHeight());
-		makeImages(type, image);
 		this.camera = camera;
 	}
 	
@@ -92,6 +91,7 @@ public class Button extends ScreenObject {
 	public State getState() {
 		return state;
 	}
+	public void setState(State s) { state = s; }
 	
 	public State getPreviousState() {
 		return prevState;

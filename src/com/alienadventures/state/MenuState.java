@@ -64,6 +64,7 @@ public class MenuState implements GameState, ObjectListener {
 		objects.add(new Image(Resources.titleBanner, 13.5f, 0.5f));
 		buttons.add(new Button(20f, 8f, "START", 0, camera));
 		buttons.add(new Button(20f, 11f, "OPTIONS", 0, camera));
+		buttons.add(new Button(3f, 3f, " ", 2, camera));
 	}
 	
 	@Override
@@ -72,10 +73,9 @@ public class MenuState implements GameState, ObjectListener {
 			Button button = (Button) obj;
 			if (button.getText().toLowerCase().equals("start")) {
 				GameLogic.gsm.push(new PlayState());
-			}
-			else if (button.getText().toLowerCase().equals("options")) {
+			} else if (button.getText().toLowerCase().equals("options")) {
 				System.out.println("ADDED WINDOW");
-				windows.add(new Window(128, 128));
+				windows.add(new Window(128, 128, "OPTIONS"));
 			}
 		}
 	}
@@ -123,8 +123,10 @@ public class MenuState implements GameState, ObjectListener {
 		for (ScreenObject obj : objects) {
 			obj.update();
 		}
-		for (Window window:windows) {
+		for (int i = 0; i < windows.size(); i++) {
+			Window window = windows.get(i);
 			window.update();
+			if (window.isDead()) windows.remove(i);
 		}
 	}
 	
@@ -134,9 +136,9 @@ public class MenuState implements GameState, ObjectListener {
 		
 		if (-400 <= scrollCounter && scrollCounter <= -300) {
 			double i = (scrollCounter + 400.0) / 100.0 * 255;
-			g2d.drawImage(Resources.darken(Resources.menuBack, 255 - (int) i), 0 - (int) (camera.getOffsetX() / 10), -128 - (int) (camera.getOffsetY() / 10), null);
+			g2d.drawImage(Resources.darken(Resources.menuBack, 255 - (int) i), -(int) (camera.getOffsetX() / 10), -128 - (int) (camera.getOffsetY() / 10), null);
 		} else {
-			g2d.drawImage(Resources.menuBack, 0 - (int) (camera.getOffsetX() / 10), -128 - (int) (camera.getOffsetY() / 10), null);
+			g2d.drawImage(Resources.menuBack, -(int) (camera.getOffsetX() / 10), -128 - (int) (camera.getOffsetY() / 10), null);
 		}
 		
 		if (intro) {
@@ -162,7 +164,7 @@ public class MenuState implements GameState, ObjectListener {
 		particles.render(g, camera);
 
 //		Resources.drawCentered(g, LetterMaker.makeSentence("TEST SENT", 4), Game.WIDTH / 2, Game.HEIGHT / 2);
-		
+
 //		g.setColor(new Color(0, 0, 0, 50));
 //		for (int x = 0; x < Game.WIDTH; x += Button.WIDTH) {
 //			int sx = (int) (x - camera.getOffsetX() % Game.WIDTH);
