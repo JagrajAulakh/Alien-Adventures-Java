@@ -8,9 +8,11 @@ import java.awt.event.KeyEvent;
 
 public class GameLogic {
 	public static GameStateManager gsm;
-	public GameLogic() {
+	private Game game;
+	public GameLogic(Game game) {
+		this.game = game;
 		gsm = new GameStateManager();
-		gsm.push(new MenuState(true));
+		gsm.push(new MenuState(game, gsm,  false));
 //		gsm.push(new PlayState());
 	}
 
@@ -21,7 +23,7 @@ public class GameLogic {
 			}
 		} else if (gsm.currentState() instanceof PlayState) {
 			if (Input.keyUpOnce(KeyEvent.VK_ENTER)) {
-				gsm.set(new MenuState(false));
+				gsm.set(new MenuState(game, gsm, false));
 			}
 		}
 		gsm.currentState().update();

@@ -15,10 +15,11 @@ public class Button extends ScreenObject {
 	public static final int WIDTH = 32;
 	public static final int HEIGHT = 32;
 	
-	private State state, prevState;
+	private State state = State.NORMAL, prevState;
 	private String text;
 	private BufferedImage normalImage, hoverImage, clickedImage;
 	private Camera camera;
+	private Window window;
 	private double scaleCounter = 0, scaleFactor = 1;
 	
 	public Button(float x, float y, String text, int type, Camera camera) {
@@ -42,6 +43,17 @@ public class Button extends ScreenObject {
 		this.camera = camera;
 	}
 	
+	public Button(float x, float y, String text, int type, Window window) {
+		this((int) (x * WIDTH), (int) (y * HEIGHT), text, type, window);
+	}
+	
+	public Button(int x, int y, String text, int type, Window window) {
+		super(x, y, Resources.buttonImages.get(type * 3).getWidth(), Resources.buttonImages.get(type * 3).getHeight());
+		this.window = window;
+		makeImages(type, LetterMaker.makeSentence(text, 2));
+		this.text = text;
+	}
+	
 	private void makeImages(int type, BufferedImage img) {
 		normalImage = Resources.copyImage(Resources.buttonImages.get(type * 3));
 		Graphics g = normalImage.getGraphics();
@@ -59,7 +71,8 @@ public class Button extends ScreenObject {
 	
 	@Override
 	public void update() {
-		Rectangle screenBounds = new Rectangle((int)(-camera.getOffsetX() + getX()), (int)(-camera.getOffsetY() + getY()), (int)getWidth(), (int)getHeight());
+		Camera camera = window == null ? this.camera : window.getWindowCamera();
+		Rectangle screenBounds = new Rectangle((int) (-camera.getOffsetX() + getX()), (int) (-camera.getOffsetY() + getY()), (int) getWidth(), (int) getHeight());
 		if (screenBounds.contains(Input.mx, Input.my)) {
 			if (Input.mousePressed(0)) {
 				state = State.HELD;
@@ -95,16 +108,18 @@ public class Button extends ScreenObject {
 	@Override
 	public void render(Graphics g, Camera camera) {
 		if (state == State.NORMAL || state == State.CLICKED) {
-			scaleCounter = 0; scaleFactor = 1;
+			scaleCounter = 0;
+			scaleFactor = 1;
 			g.drawImage(normalImage, screenX(camera), screenY(camera), null);
 		} else if (state == State.HOVER) {
 			if (scaleCounter <= 50) {
 				scaleCounter++;
 				scaleFactor += (SCALEMAX - scaleFactor) / 10;
 			}
-			Resources.drawCentered(g, Resources.scale(hoverImage, scaleFactor), screenX(camera)+hoverImage.getWidth()/2, screenY(camera)+hoverImage.getHeight()/2);
+			Resources.drawCentered(g, Resources.scale(hoverImage, scaleFactor), screenX(camera) + hoverImage.getWidth() / 2, screenY(camera) + hoverImage.getHeight() / 2);
 		} else if (state == State.HELD) {
-			scaleCounter = 0; scaleFactor = 1;
+			scaleCounter = 0;
+			scaleFactor = 1;
 			g.drawImage(clickedImage, screenX(camera), screenY(camera), null);
 		}
 	}

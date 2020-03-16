@@ -2,12 +2,16 @@ package com.alienadventures.ui;
 
 import com.alienadventures.Camera;
 import com.alienadventures.util.Rectangle;
+import sun.awt.X11.Screen;
 
 import java.awt.*;
 
 public abstract class ScreenObject {
 	protected Rectangle bounds;
 
+	public ScreenObject() {
+		this(0, 0, 0, 0);
+	}
 	public ScreenObject(double x, double y, double width, double height) {
 		this.bounds = new Rectangle(x, y, width, height);
 	}

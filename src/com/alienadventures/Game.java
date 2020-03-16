@@ -59,15 +59,16 @@ public class Game extends Canvas {
 	}
 
 	private void load() {
+		Game game = this;
 		imageLoadingThread = new Thread(new Runnable() {
 			@Override
 			public void run() {
 				try {
 					Resources.load();
+					logic = new GameLogic(game);
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
-				logic = new GameLogic();
 			}
 		});
 		imageLoadingThread.start();
@@ -134,6 +135,12 @@ public class Game extends Canvas {
 
 		g.dispose();
 		bs.show();
+	}
+	
+	public BufferedImage screenshot() {
+		BufferedImage img = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_ARGB);
+		paint(img.getGraphics());
+		return img;
 	}
 
 	private void loadingAnimation(Graphics g) {

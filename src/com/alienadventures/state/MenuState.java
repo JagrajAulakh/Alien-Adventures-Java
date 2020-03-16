@@ -9,6 +9,7 @@ import com.alienadventures.input.Input;
 import com.alienadventures.ui.*;
 import com.alienadventures.ui.Button;
 import com.alienadventures.ui.Image;
+import com.alienadventures.ui.Window;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
@@ -16,21 +17,27 @@ import java.util.ArrayList;
 
 public class MenuState implements GameState, ObjectListener {
 	
+	private Game game;
+	private GameStateManager gsm;
 	private ParticleManager particles;
 	private ArrayList<ScreenObject> objects;
+	private ArrayList<Window> windows;
 	private ButtonManager buttons;
 	private boolean intro;
 	private int scrollCounter, h;
 	private Camera camera;
 	
-	public MenuState() {
-		this(true);
+	public MenuState(Game game, GameStateManager gsm) {
+		this(game, gsm, true);
 	}
 	
-	public MenuState(boolean intro) {
+	public MenuState(Game game, GameStateManager gsm, boolean intro) {
+		this.game = game;
+		this.gsm = gsm;
 		camera = new Camera();
 		particles = new ParticleManager();
 		objects = new ArrayList<ScreenObject>();
+		windows = new ArrayList<Window>();
 		buttons = new ButtonManager();
 		buttons.addListener(this);
 		
@@ -66,12 +73,16 @@ public class MenuState implements GameState, ObjectListener {
 			if (button.getText().toLowerCase().equals("start")) {
 				GameLogic.gsm.push(new PlayState());
 			}
+			else if (button.getText().toLowerCase().equals("options")) {
+				System.out.println("ADDED WINDOW");
+				windows.add(new Window(128, 128));
+			}
 		}
 	}
 	
 	@Override
 	public void hovered(ScreenObject obj) {
-
+	
 	}
 	
 	@Override
@@ -108,9 +119,12 @@ public class MenuState implements GameState, ObjectListener {
 		}
 		
 		particles.update();
-		buttons.update();
+		if (windows.size() == 0) buttons.update();
 		for (ScreenObject obj : objects) {
 			obj.update();
+		}
+		for (Window window:windows) {
+			window.update();
 		}
 	}
 	
@@ -137,22 +151,25 @@ public class MenuState implements GameState, ObjectListener {
 			double i = 5 * Math.sin(Math.toRadians(Game.frameCount * 4));
 			Resources.drawCentered(g2d, Resources.titleImage, screenX(Game.WIDTH / 2), screenY(-Game.HEIGHT / 2) + (int) i);
 		}
-
-//		for (ScreenObject obj : objects) {
-//			obj.render(g2d, camera);
-//		}
+		
+		for (ScreenObject obj : objects) {
+			obj.render(g, camera);
+		}
 		buttons.render(g, camera);
+		for (ScreenObject window : windows) {
+			window.render(g, camera);
+		}
 		particles.render(g, camera);
 
 //		Resources.drawCentered(g, LetterMaker.makeSentence("TEST SENT", 4), Game.WIDTH / 2, Game.HEIGHT / 2);
-
+		
 //		g.setColor(new Color(0, 0, 0, 50));
 //		for (int x = 0; x < Game.WIDTH; x += Button.WIDTH) {
-//			int sx = (int)(x - camera.getOffsetX() % Game.WIDTH);
+//			int sx = (int) (x - camera.getOffsetX() % Game.WIDTH);
 //			g.drawLine(sx, 0, sx, Game.HEIGHT);
 //		}
 //		for (int y = 0; y < Game.HEIGHT; y += Button.HEIGHT) {
-//			int sy = (int)(y - camera.getOffsetY() % Game.HEIGHT);
+//			int sy = (int) (y - camera.getOffsetY() % Game.HEIGHT);
 //			g.drawLine(0, sy, Game.WIDTH, sy);
 //		}
 	}

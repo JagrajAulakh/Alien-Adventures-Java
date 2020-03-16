@@ -25,7 +25,9 @@ public class Animation extends ImageType {
 	public void addFrame(BufferedImage img) {
 		frames.add(img);
 	}
-
+	
+	public int getDelayCounter() { return delay; }
+	
 	@Override
 	public void reset() {
 		frame = delay = 0;

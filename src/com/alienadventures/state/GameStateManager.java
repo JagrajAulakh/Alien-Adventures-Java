@@ -1,5 +1,7 @@
 package com.alienadventures.state;
 
+import com.alienadventures.Game;
+
 import java.util.Stack;
 
 public class GameStateManager {
