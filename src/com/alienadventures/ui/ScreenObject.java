@@ -2,7 +2,6 @@ package com.alienadventures.ui;
 
 import com.alienadventures.Camera;
 import com.alienadventures.util.Rectangle;
-import sun.awt.X11.Screen;
 
 import java.awt.*;
 
