@@ -146,12 +146,14 @@ public class Player extends GameObject {
 		applyGravity(1);
 		setAccX(0);
 		ducking = false;
+		System.out.println(vel.x);
 		if (Input.keyDown(KeyEvent.VK_S)) {
 			if (onGround) {
 				ducking = true;
 				if (Input.keyDownOnce(KeyEvent.VK_S)) {
 					vel.multiply(3);
 				}
+//				if (Math.abs(vel.x) < 0.01) vel.x = 0;
 			}
 		}
 		if (!ducking) {
@@ -176,9 +178,7 @@ public class Player extends GameObject {
 
 		double friction = World.FRICTION;
 		if (ducking) {
-			friction *= 0.2;
-			if (vel.x > 0) vel.x = Math.max(0.51 / World.FRICTION, vel.x);
-			else if (vel.x < 0) vel.x = Math.min(-0.51 / World.FRICTION, vel.x);
+			friction = World.FRICTION/6;
 		}
 		setHeight(image.getImage().getHeight());
 		applyVelY();

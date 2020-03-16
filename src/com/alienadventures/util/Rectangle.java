@@ -9,6 +9,7 @@ public class Rectangle implements Serializable {
 	public Rectangle(double x, double y, double width, double height) {
 		this(x, y, width, height, null);
 	}
+
 	public Rectangle(double x, double y, double width, double height, Object data) {
 		this.x = x;
 		this.y = y;
@@ -20,6 +21,7 @@ public class Rectangle implements Serializable {
 	public boolean intersects(Rectangle other) {
 		return intersects(other.getX(), other.getY(), other.getWidth(), other.getHeight());
 	}
+
 	public boolean intersects(double x, double y, double width, double height) {
 		return (x + width > this.x &&
 				y + height > this.y &&
@@ -46,13 +48,46 @@ public class Rectangle implements Serializable {
 				(y + height) <= this.y + this.height);
 	}
 
-	public double getX() { return x; }
-	public double getY() { return y; }
-	public void setPos(double x, double y) { this.x = x; this.y = y; }
-	public void setRect(double x, double y, double width, double height) { setPos(x, y); this.width = width; this.height = height; }
-	public void setWidth(double width) { this.width = width; }
-	public void setHeight(double height) { this.height = height; }
-	public double getWidth() { return width; }
-	public double getHeight() { return height; }
-	public Object getData() { return data; }
+	public double getX() {
+		return x;
+	}
+
+	public double getY() {
+		return y;
+	}
+
+	public void setPos(double x, double y) {
+		this.x = x;
+		this.y = y;
+	}
+
+	public void setRect(double x, double y, double width, double height) {
+		setPos(x, y);
+		this.width = width;
+		this.height = height;
+	}
+
+	public void setWidth(double width) {
+		this.width = width;
+	}
+
+	public void setHeight(double height) {
+		this.height = height;
+	}
+
+	public double getWidth() {
+		return width;
+	}
+
+	public double getHeight() {
+		return height;
+	}
+
+	public Object getData() {
+		return data;
+	}
+
+	public String toString() {
+		return "{" + x + ", " + y + ", " + width + ", " + height + "}";
+	}
 }

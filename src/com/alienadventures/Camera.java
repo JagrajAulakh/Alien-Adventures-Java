@@ -23,18 +23,26 @@ public class Camera {
 		return offset.getY();
 	}
 
-	public void setY(double y) { offset.y = y; }
-	public void setX(double x) { offset.x = x; }
+	public void setY(double y) {
+		offset.y = y;
+	}
 
-	public void centerOn(GameObject obj) { centerOn(obj, true); }
+	public void setX(double x) {
+		offset.x = x;
+	}
+
+	public void centerOn(GameObject obj) {
+		centerOn(obj, true);
+	}
+
 	public void centerOn(GameObject obj, boolean interpolation) {
-		double goBy = 1.0/10;
+		double goBy = 1.0 / 10;
 		if (!interpolation) {
 			goBy = 1.0;
 		}
-		double newOffsetX = obj.getX() - Game.WIDTH/2;
-		double newOffsetY = obj.getY() - Game.HEIGHT/2;
-		offset.x += (newOffsetX - offset.x)*goBy;
-		offset.y += (newOffsetY - offset.y)*goBy;
+		double newOffsetX = obj.getX() - Game.WIDTH / 2;
+		double newOffsetY = obj.getY() - Game.HEIGHT / 2;
+		offset.x += (newOffsetX - offset.x) * goBy;
+		offset.y += (newOffsetY - offset.y) * goBy;
 	}
 }

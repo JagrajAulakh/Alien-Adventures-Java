@@ -5,7 +5,7 @@ import com.alienadventures.Camera;
 import java.awt.*;
 import java.util.ArrayList;
 
-public class ButtonManager {
+public class ButtonManager implements Manager {
 
 	enum State {
 		NORMAL,
@@ -36,6 +36,7 @@ public class ButtonManager {
 		toRemove.add(b);
 	}
 
+	@Override
 	public void update() {
 		for (Button b : toRemove) {
 			buttons.remove(b);
@@ -59,6 +60,7 @@ public class ButtonManager {
 		}
 	}
 
+	@Override
 	public void render(Graphics g, Camera camera) {
 		for (Button b : buttons) {
 			b.render(g, camera);

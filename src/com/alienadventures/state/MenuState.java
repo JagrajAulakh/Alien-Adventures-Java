@@ -55,8 +55,8 @@ public class MenuState implements GameState, ObjectListener {
 	
 	private void makeObjects() {
 		objects.add(new Image(Resources.titleBanner, 13.5f, 0.5f));
-		buttons.add(new Button(20f, 8f, "START", 0));
-		buttons.add(new Button(20f, 11f, "OPTIONS", 0));
+		buttons.add(new Button(20f, 8f, "START", 0, camera));
+		buttons.add(new Button(20f, 11f, "OPTIONS", 0, camera));
 	}
 	
 	@Override
@@ -72,7 +72,7 @@ public class MenuState implements GameState, ObjectListener {
 	
 	@Override
 	public void hovered(ScreenObject obj) {
-	
+
 	}
 	
 	@Override
@@ -145,7 +145,7 @@ public class MenuState implements GameState, ObjectListener {
 		buttons.render(g, camera);
 		particles.render(g, camera);
 
-		Resources.drawCentered(g, LetterMaker.makeSentence("TEST SENT", 4), Game.WIDTH / 2, Game.HEIGHT / 2);
+//		Resources.drawCentered(g, LetterMaker.makeSentence("TEST SENT", 4), Game.WIDTH / 2, Game.HEIGHT / 2);
 
 //		g.setColor(new Color(0, 0, 0, 50));
 //		for (int x = 0; x < Game.WIDTH; x += Button.WIDTH) {
