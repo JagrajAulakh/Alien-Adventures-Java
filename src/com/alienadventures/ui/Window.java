@@ -21,12 +21,14 @@ public class Window extends ScreenObject {
 	public Window(int x, int y) {
 		objects = new ArrayList<ScreenObject>();
 		windowCamera = new Camera(-x, -y);
-		addElement(new Button(3.0f, 3.0f, "TESTING", 0, this));
 		animationCounter = 0;
 		animationCounterMax = 40;
 		scale = 0.01;
 		winSurf = new BufferedImage(Game.WIDTH, Game.HEIGHT, BufferedImage.TYPE_INT_ARGB);
 		gWin = winSurf.getGraphics();
+		
+		addElement(new Button(500, 100, " ", 7, this));
+		addElement(new Button(3.0f, 3.0f, "TESTING", 0, this));
 	}
 	
 	public void addElement(ScreenObject obj) {
@@ -52,7 +54,7 @@ public class Window extends ScreenObject {
 	
 	@Override
 	public void render(Graphics g, Camera camera) {
-		gWin.drawImage(Resources.buttonImages.get(21), -(int) windowCamera.getOffsetX(), -(int) windowCamera.getOffsetY(), null);
+		gWin.drawImage(Resources.buttonImages.get(24), -(int) windowCamera.getOffsetX(), -(int) windowCamera.getOffsetY(), null);
 		for (ScreenObject obj : objects) {
 			obj.render(gWin, windowCamera);
 		}
