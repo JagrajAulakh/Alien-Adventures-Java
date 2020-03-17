@@ -23,7 +23,6 @@ public class Resources {
 	public static ArrayList<BufferedImage> buttonImages;
 	public static ArrayList<ImageType[]> playerImages;
 	public static Color[][] playerColors;
-	public static AudioClip hoverSound, clickSound;
 
 	public static synchronized void load() throws IOException, LineUnavailableException, UnsupportedAudioFileException {
 		new LetterMaker();
@@ -115,10 +114,7 @@ public class Resources {
 		playerColors[4][1] = new Color(255, 209, 169);
 		playerColors[4][2] = new Color(70, 128, 0);
 
-		hoverSound = Applet.newAudioClip(new File("sounds/hover.wav").toURI().toURL());
-		clickSound = Applet.newAudioClip(new File("sounds/arp2.wav").toURI().toURL());
-
-		try { Thread.sleep(2000); } catch (InterruptedException e) { e.printStackTrace(); }
+//		try { Thread.sleep(2000); } catch (InterruptedException e) { e.printStackTrace(); }
 	}
 
 	public static BufferedImage getImage(BufferedImage sheet, int[] co) {

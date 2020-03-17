@@ -102,13 +102,13 @@ public class Input implements KeyListener,MouseListener,MouseMotionListener,Mous
 	@Override
 	public synchronized void keyPressed(KeyEvent e) {
 		int keyCode = e.getKeyCode();
-		currentKeys[keyCode] = true;
+		try {currentKeys[keyCode] = true;} catch (IndexOutOfBoundsException ex) {}
 	}
 
 	@Override
 	public synchronized void keyReleased(KeyEvent e) {
 		int keyCode = e.getKeyCode();
-		currentKeys[keyCode] = false;
+		try {currentKeys[keyCode] = false;} catch (IndexOutOfBoundsException ex) {}
 	}
 
 	@Override

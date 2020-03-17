@@ -70,22 +70,24 @@ public class Reader {
 
 		for (int layer = 0; layer < layers.getLength(); layer++) {
 			Node n = layers.item(layer);
+			int[][] data = null;
 			if (n.getNodeType() == Node.ELEMENT_NODE) {
 				Element e = (Element)n;
 				String dataString = ((Element)e.getElementsByTagName("data").item(0)).getTextContent();
 				int width = toInt(e.getAttribute("width"));
 				int height = toInt(e.getAttribute("height"));
-				int[][] data = new int[height][width];
+				data = new int[height][width];
 				String[] rowStrings = dataString.split("\n");
 				for (int j = 0; j < rowStrings.length; j++) {
 					if (rowStrings[j].equals("")) continue;
 					String[] rowString = rowStrings[j].split(",");
 					for (int i = 0; i < rowString.length; i++) {
 						int d = toInt(rowString[i]);
-//						data
+						data[j][i] = d;
 					}
 				}
 			}
+			System.out.println(Arrays.toString(data));
 		}
 	}
 

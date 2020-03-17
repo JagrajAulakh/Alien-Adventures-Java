@@ -117,7 +117,7 @@ public class World {
 				g.setColor(Color.GREEN);
 			}
 			player.render(g2d, camera);
-//			player.drawHitBox(g2d, camera);
+			player.drawHitBox(g2d, camera);
 			g2d.setColor(new Color(255, 100, 255));
 			g2d.setColor(Color.RED);
 //			tree.show(g2d, camera);
