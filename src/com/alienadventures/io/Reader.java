@@ -5,7 +5,13 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Scanner;
+import javax.xml.parsers.*;
+import org.w3c.dom.Document;
+import org.w3c.dom.NodeList;
+import org.w3c.dom.Node;
+import org.w3c.dom.Element;
 
 public class Reader {
 
@@ -42,6 +48,45 @@ public class Reader {
 			}
 		}
 		return co;
+	}
+
+	public static Document readXMLFile(String path) {
+		try {
+			return DocumentBuilderFactory.newInstance().newDocumentBuilder().parse(new File(path));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	public static void main(String[] args) throws Exception {
+		Document map0 = readXMLFile("maps/map0.tmx");
+		map0.getDocumentElement().normalize();
+		System.out.println("Root element: " + map0.getDocumentElement().getNodeName());
+
+		NodeList layers = map0.getElementsByTagName("layer");
+		NodeList tilesets = map0.getElementsByTagName("tileset");
+		System.out.println(tilesets);
+
+		for (int layer = 0; layer < layers.getLength(); layer++) {
+			Node n = layers.item(layer);
+			if (n.getNodeType() == Node.ELEMENT_NODE) {
+				Element e = (Element)n;
+				String dataString = ((Element)e.getElementsByTagName("data").item(0)).getTextContent();
+				int width = toInt(e.getAttribute("width"));
+				int height = toInt(e.getAttribute("height"));
+				int[][] data = new int[height][width];
+				String[] rowStrings = dataString.split("\n");
+				for (int j = 0; j < rowStrings.length; j++) {
+					if (rowStrings[j].equals("")) continue;
+					String[] rowString = rowStrings[j].split(",");
+					for (int i = 0; i < rowString.length; i++) {
+						int d = toInt(rowString[i]);
+//						data
+					}
+				}
+			}
+		}
 	}
 
 }

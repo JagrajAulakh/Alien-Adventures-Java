@@ -54,7 +54,6 @@ public class Window extends ScreenObject implements ObjectListener {
 	
 	@Override
 	public void update() {
-		if (killing) System.out.println(animationCounter);
 		if (2 <= animationCounter && animationCounter < animationCounterMax) {
 			animationCounter += killing ? -1 : 1;
 			double k = (2*Math.PI)/(Math.PI - Math.asin(1/1.1));

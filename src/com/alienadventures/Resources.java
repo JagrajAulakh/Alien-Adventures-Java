@@ -14,7 +14,6 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.net.URL;
 import java.util.ArrayList;
 
 public class Resources {
@@ -25,26 +24,26 @@ public class Resources {
 	public static ArrayList<ImageType[]> playerImages;
 	public static Color[][] playerColors;
 	public static AudioClip hoverSound, clickSound;
-	
-	public static synchronized void load() throws IOException {
+
+	public static synchronized void load() throws IOException, LineUnavailableException, UnsupportedAudioFileException {
 		new LetterMaker();
 		fontSheet = ImageIO.read(new File("fonts/font1.png"));
 		menuBack = scale(ImageIO.read(new File("images/menu_back.png")), 2);
 		titleImage = scale(ImageIO.read(new File("images/title.png")), 3);
 		titleBanner = scale(ImageIO.read(new File("images/title_banner.png")), 3);
-		
+
 		buttonSheet = ImageIO.read(new File("images/sheets/button_sheet.png"));
 		ArrayList<int[]> buttonCo = Reader.getCo("data/sheets_cos/button_sheet_cos.txt");
 		buttonImages = new ArrayList<BufferedImage>();
 		for (int[] co : buttonCo) {
 			buttonImages.add(scale(getImage(buttonSheet, co), 4));
 		}
-		
+
 		miscSheet = ImageIO.read(new File("images/sheets/misc_sheet.png"));
 		ArrayList<int[]> miscCo = Reader.getCo("data/sheets_cos/button_sheet_cos.txt");
 		fireBallImage = scale(miscSheet.getSubimage(112, 80, 16, 16), 4);
 		boxImage = scale(getImage(miscSheet, new int[]{0, 192, 16, 16}), SCALE);
-		
+
 		ArrayList<ImageType> playerImageList = new ArrayList<ImageType>();
 		playerSheet = ImageIO.read(new File("images/sheets/player_sheet.png"));
 		ArrayList<int[]> playerCo = Reader.getCo("data/sheets_cos/player_sheet_cos.txt");
@@ -56,7 +55,7 @@ public class Resources {
 			// 1 WALKING
 			img = new Animation();
 			for (int j = 0; j < 4; j++) {
-				((Animation) img).addFrame(scale(getImage(playerSheet, playerCo.get(i + j + 1)), SCALE));
+				((Animation)img).addFrame(scale(getImage(playerSheet, playerCo.get(i + j + 1)), SCALE));
 			}
 			playerImageList.add(img);
 			// 2 ?
@@ -68,7 +67,7 @@ public class Resources {
 			// 4 DUCKING
 			img = new Animation(5);
 			for (int j = 0; j < 2; j++) {
-				((Animation) img).addFrame(scale(getImage(playerSheet, playerCo.get(i + j + 7)), SCALE));
+				((Animation)img).addFrame(scale(getImage(playerSheet, playerCo.get(i + j + 7)), SCALE));
 			}
 			playerImageList.add(img);
 			// 5 HURT
@@ -77,55 +76,55 @@ public class Resources {
 			// 6 CLIMBING
 			img = new Animation(20);
 			for (int j = 0; j < 2; j++) {
-				((Animation) img).addFrame(scale(getImage(playerSheet, playerCo.get(i + j + 10)), SCALE));
+				((Animation)img).addFrame(scale(getImage(playerSheet, playerCo.get(i + j + 10)), SCALE));
 			}
 			playerImageList.add(img);
 			// 7 SWIMMING
 			img = new Animation(20);
 			for (int j = 0; j < 2; j++) {
-				((Animation) img).addFrame(scale(getImage(playerSheet, playerCo.get(i + j + 12)), SCALE));
+				((Animation)img).addFrame(scale(getImage(playerSheet, playerCo.get(i + j + 12)), SCALE));
 			}
 			playerImageList.add(img);
 			// 8 SLIDE
 			img = new Animation(20);
 			for (int j = 0; j < 2; j++) {
-				((Animation) img).addFrame(scale(getImage(playerSheet, playerCo.get(i + j + 14)), SCALE));
+				((Animation)img).addFrame(scale(getImage(playerSheet, playerCo.get(i + j + 14)), SCALE));
 			}
 			playerImageList.add(img);
 		}
 		playerImages = insertFlipped(playerImageList);
 		playerColors = new Color[5][3];
-		
+
 		playerColors[0][0] = new Color(107, 190, 0);
 		playerColors[0][1] = new Color(176, 250, 20);
 		playerColors[0][2] = new Color(70, 128, 0);
-		
+
 		playerColors[1][0] = new Color(0, 137, 220);
 		playerColors[1][1] = new Color(93, 210, 255);
 		playerColors[1][2] = new Color(70, 128, 0);
-		
+
 		playerColors[2][0] = new Color(197, 93, 219);
 		playerColors[2][1] = new Color(255, 171, 199);
 		playerColors[2][2] = new Color(70, 128, 0);
-		
+
 		playerColors[3][0] = new Color(240, 201, 0);
 		playerColors[3][1] = new Color(255, 239, 133);
 		playerColors[3][2] = new Color(70, 128, 0);
-		
+
 		playerColors[4][0] = new Color(190, 169, 106);
 		playerColors[4][1] = new Color(255, 209, 169);
 		playerColors[4][2] = new Color(70, 128, 0);
-		
+
 		hoverSound = Applet.newAudioClip(new File("sounds/hover.wav").toURI().toURL());
 		clickSound = Applet.newAudioClip(new File("sounds/arp2.wav").toURI().toURL());
-		
-		//		try { Thread.sleep(2000); } catch (InterruptedException e) { e.printStackTrace(); }
+
+		try { Thread.sleep(2000); } catch (InterruptedException e) { e.printStackTrace(); }
 	}
-	
+
 	public static BufferedImage getImage(BufferedImage sheet, int[] co) {
 		return sheet.getSubimage(co[0], co[1], co[2], co[3]);
 	}
-	
+
 	private static ArrayList<ImageType[]> insertFlipped(ArrayList<ImageType> source) {
 		ArrayList<ImageType[]> flipped = new ArrayList<ImageType[]>();
 		for (ImageType i : source) {
@@ -134,7 +133,7 @@ public class Resources {
 		}
 		return flipped;
 	}
-	
+
 	public static BufferedImage scale(BufferedImage original, int newWidth, int newHeight) {
 		BufferedImage resized = new BufferedImage(newWidth, newHeight, BufferedImage.TYPE_INT_ARGB);
 		Graphics2D g = resized.createGraphics();
@@ -143,11 +142,11 @@ public class Resources {
 		g.dispose();
 		return resized;
 	}
-	
+
 	public static BufferedImage scale(BufferedImage image, double factor) {
-		return scale(image, (int) (image.getWidth() * factor), (int) (image.getHeight() * factor));
+		return scale(image, (int)(image.getWidth() * factor), (int)(image.getHeight() * factor));
 	}
-	
+
 	public static BufferedImage flip(BufferedImage original, boolean hz, boolean vt) {
 		if (!hz && !vt) {
 			return original;
@@ -166,13 +165,13 @@ public class Resources {
 		g.dispose();
 		return flipped;
 	}
-	
+
 	public static void drawCentered(Graphics g, BufferedImage img, int x, int y) {
 		int sx = x - img.getWidth() / 2;
 		int sy = y - img.getHeight() / 2;
 		g.drawImage(img, sx, sy, null);
 	}
-	
+
 	public static BufferedImage copyImage(BufferedImage source) {
 		BufferedImage b = new BufferedImage(source.getWidth(), source.getHeight(), BufferedImage.TYPE_INT_ARGB);
 		Graphics g = b.getGraphics();
@@ -180,11 +179,11 @@ public class Resources {
 		g.dispose();
 		return b;
 	}
-	
+
 	public static BufferedImage darken(BufferedImage source) {
 		return darken(source, 50);
 	}
-	
+
 	public static BufferedImage darken(BufferedImage source, int amount) {
 		BufferedImage b = new BufferedImage(source.getWidth(), source.getHeight(), BufferedImage.TYPE_INT_ARGB);
 		Graphics g = b.getGraphics();

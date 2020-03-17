@@ -66,7 +66,7 @@ public class Game extends Canvas {
 				try {
 					Resources.load();
 					logic = new GameLogic(game);
-				} catch (IOException e) {
+				} catch (Exception e) {
 					e.printStackTrace();
 				}
 			}
