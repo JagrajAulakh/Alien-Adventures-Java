@@ -99,8 +99,8 @@ public class Game extends Canvas {
 			}
 			frames++;
 
-			if (System.currentTimeMillis() - timer > 1000) {
-				timer += 1000;
+			if (System.currentTimeMillis() - timer > 500) {
+				timer += 500;
 				System.out.println("FPS: " + frames);
 				frames = 0;
 			}

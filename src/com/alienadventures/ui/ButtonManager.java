@@ -1,18 +1,12 @@
 package com.alienadventures.ui;
 
 import com.alienadventures.Camera;
+import static com.alienadventures.ui.Button.State;
 
 import java.awt.*;
 import java.util.ArrayList;
 
 public class ButtonManager implements Manager {
-
-	enum State {
-		NORMAL,
-		HOVER,
-		HELD,
-		CLICKED
-	}
 
 	private ArrayList<Button> buttons;
 	private ArrayList<Button> toRemove;

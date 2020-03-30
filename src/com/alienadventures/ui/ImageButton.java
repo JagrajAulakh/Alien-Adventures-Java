@@ -6,9 +6,11 @@ import com.alienadventures.ui.*;
 import java.awt.image.BufferedImage;
 
 public class ImageButton extends Button {
-	private BufferedImage image;
-	public ImageButton(float x, float y, BufferedImage image, Camera camera) {
-		super(x, y, camera);
-		this.image = image;
+	
+	public ImageButton(float x, float y, int type, Camera camera, ObjectListener callback) {
+		super(x, y, camera, callback);
+		makeImages(type, null);
+		setWidth(normalImage.getWidth());
+		setHeight(normalImage.getHeight());
 	}
 }

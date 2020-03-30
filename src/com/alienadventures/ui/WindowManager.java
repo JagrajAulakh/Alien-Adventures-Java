@@ -6,7 +6,7 @@ import java.awt.*;
 import java.util.ArrayList;
 
 public class WindowManager implements Manager {
-	ArrayList<Window> windows;
+	private ArrayList<Window> windows;
 	
 	public WindowManager() {
 		windows = new ArrayList<Window>();
@@ -16,7 +16,7 @@ public class WindowManager implements Manager {
 		windows.add(w);
 	}
 	
-	public boolean isEmpty()  {
+	public boolean isEmpty() {
 		return windows.size() == 0;
 	}
 	

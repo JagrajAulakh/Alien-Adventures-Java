@@ -36,6 +36,14 @@ public abstract class ScreenObject {
 		return bounds.getHeight();
 	}
 	
+	public void setX(double x) {
+		bounds.setX(x);
+	}
+	
+	public void setY(double y) {
+		bounds.setY(y);
+	}
+	
 	protected void setWidth(double width) {
 		this.bounds.setWidth(width);
 	}

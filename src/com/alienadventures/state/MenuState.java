@@ -7,7 +7,6 @@ import com.alienadventures.Resources;
 import com.alienadventures.entity.Particle;
 import com.alienadventures.input.Input;
 import com.alienadventures.ui.*;
-import com.alienadventures.ui.Button;
 import com.alienadventures.ui.Image;
 import com.alienadventures.ui.Window;
 
@@ -24,7 +23,8 @@ public class MenuState implements GameState, ObjectListener {
 	private WindowManager windows;
 	private ButtonManager buttons;
 	private boolean intro;
-	private int scrollCounter, h;
+	private int scrollCounter;
+	private double h;
 	private Camera camera;
 	
 	public MenuState(Game game, GameStateManager gsm) {
@@ -53,24 +53,24 @@ public class MenuState implements GameState, ObjectListener {
 	}
 	
 	private int screenX(double x) {
-		return (int) (x - camera.getOffsetX());
+		return (int)(x - camera.getOffsetX());
 	}
 	
 	private int screenY(double y) {
-		return (int) (y - camera.getOffsetY());
+		return (int)(y - camera.getOffsetY());
 	}
 	
 	private void makeObjects() {
 		objects.add(new Image(Resources.titleBanner, 13.5f, 0.5f));
-		buttons.add(new Button(20f, 8f, "START", 0, camera));
-		buttons.add(new Button(20f, 11f, "OPTIONS", 0, camera));
-//		buttons.add(new Button(3f, 3f, " ", 2, camera));
+		buttons.add(new TextButton(20f, 8f, "START", 0, camera, this));
+		buttons.add(new TextButton(20f, 11f, "OPTIONS", 0, camera, this));
+		buttons.add(new ImageButton(3f, 3f, 2, camera, this));
 	}
 	
 	@Override
 	public void clicked(ScreenObject obj) {
-		if (obj instanceof Button) {
-			Button button = (Button) obj;
+		if (obj instanceof TextButton) {
+			TextButton button = (TextButton)obj;
 			if (button.getText().toLowerCase().equals("start")) {
 				GameLogic.gsm.push(new PlayState());
 			} else if (button.getText().toLowerCase().equals("options")) {
@@ -127,13 +127,13 @@ public class MenuState implements GameState, ObjectListener {
 	
 	@Override
 	public void render(Graphics g) {
-		Graphics2D g2d = (Graphics2D) g.create();
+		Graphics2D g2d = (Graphics2D)g.create();
 		
 		if (-400 <= scrollCounter && scrollCounter <= -300) {
 			double i = (scrollCounter + 400.0) / 100.0 * 255;
-			g2d.drawImage(Resources.darken(Resources.menuBack, 255 - (int) i), -(int) (camera.getOffsetX() / 10), -128 - (int) (camera.getOffsetY() / 10), null);
+			g2d.drawImage(Resources.darken(Resources.menuBack, 255 - (int)i), -(int)(camera.getOffsetX() / 10), -128 - (int)(camera.getOffsetY() / 10), null);
 		} else {
-			g2d.drawImage(Resources.menuBack, -(int) (camera.getOffsetX() / 10), -128 - (int) (camera.getOffsetY() / 10), null);
+			g2d.drawImage(Resources.menuBack, -(int)(camera.getOffsetX() / 10), -128 - (int)(camera.getOffsetY() / 10), null);
 		}
 		
 		if (intro) {
@@ -141,12 +141,12 @@ public class MenuState implements GameState, ObjectListener {
 			if (scrollCounter < 0) {
 				if (scrollCounter < -300) opacity = 0;
 				if (-300 <= scrollCounter && scrollCounter <= -200) {
-					opacity = (float) (scrollCounter + 300) / 100f;
+					opacity = (float)(scrollCounter + 300) / 100f;
 				}
 			}
 			g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, opacity));
 			double i = 5 * Math.sin(Math.toRadians(Game.frameCount * 4));
-			Resources.drawCentered(g2d, Resources.titleImage, screenX(Game.WIDTH / 2), screenY(-Game.HEIGHT / 2) + (int) i);
+			Resources.drawCentered(g2d, Resources.titleImage, screenX(Game.WIDTH / 2), screenY(-Game.HEIGHT / 2) + (int)i);
 		}
 		
 		for (ScreenObject obj : objects) {
