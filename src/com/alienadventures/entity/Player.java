@@ -25,15 +25,17 @@ public class Player extends GameObject {
 	public static final int PLAYER_PINK = 2;
 	public static final int PLAYER_YELLOW = 3;
 	public static final int PLAYER_BROWN = 4;
-
+	
+	private static final int COLLISION_CHECKING_RANGE = 100;
+	
 	private boolean onGround, ducking;
 	private int type;
-	private ImageType prevImage;
+	
+	public Player(World world) { this(world, Game.WIDTH / 2.0, -Game.HEIGHT, PLAYER_GREEN); }
+	public Player(World world, int type) { this(world, Game.WIDTH / 2.0, -Game.HEIGHT, type); }
 
-	public Player() { this(PLAYER_GREEN); }
-
-	public Player(int type) {
-		super(Game.WIDTH / 2, -Game.HEIGHT);
+	public Player(World world, double x, double y, int type) {
+		super(world, x, y);
 		this.image = Resources.playerImages.get(0)[0];
 		setWidth(image.getImage().getWidth());
 		setHeight(image.getImage().getHeight());
@@ -41,6 +43,8 @@ public class Player extends GameObject {
 		this.type = type;
 		updateHitBox();
 	}
+	
+	public int getType() { return type; }
 
 	public void respawn() {
 		x = Game.WIDTH / 2;
@@ -66,9 +70,9 @@ public class Player extends GameObject {
 				}
 			} else {
 				if (vel.x > 0) {
-					image = new SingleImage(((Animation)Resources.playerImages.get(t + 4)[0]).getImage(0));
+					image = new SingleImage(((Animation)Resources.playerImages.get(t + 4)[0]).getFrame(0));
 				} else {
-					image = new SingleImage(((Animation)Resources.playerImages.get(t + 4)[1]).getImage(0));
+					image = new SingleImage(((Animation)Resources.playerImages.get(t + 4)[1]).getFrame(0));
 				}
 			}
 		} else {
@@ -98,10 +102,11 @@ public class Player extends GameObject {
 					}
 				} else if (o instanceof Box) {
 					if (vel.x > 0) {
-						o.vel.x = vel.x / World.FRICTION + acc.x;
+						o.setVelX(vel.x / World.FRICTION + acc.x);
 					} else if (vel.x < 0) {
-						o.vel.x = vel.x / World.FRICTION + acc.x;
+						o.setVelX(vel.x / World.FRICTION - acc.x);
 					}
+					o.setVelX(vel.x / World.FRICTION);
 				}
 				updateHitBox();
 			}
@@ -115,11 +120,11 @@ public class Player extends GameObject {
 		for (Rectangle r : rectangles) {
 			GameObject o = (GameObject)r.getData();
 			if (collides((o))) {
-				if (o instanceof Platform) {
+				if (!(o instanceof Particle)) {
 					if (vel.y > 0) {
 						if (vel.y > 5) {
 							for (int i = 0; i < Math.pow(2, vel.y/6.0); i++) {
-								PlayState.world.addObject(new Particle(getCenterX(), getCenterY(), type));
+								PlayState.world.addObject(new Particle(world, getCenterX(), getCenterY(), type));
 							}
 						}
 						y = o.getY() - height;
@@ -129,13 +134,14 @@ public class Player extends GameObject {
 						y = o.getY() + o.getHeight();
 						vel.y = acc.y = 0;
 					}
-				} else if (o instanceof Box) {
-					if (vel.y > 0) {
-						y = o.getY() - height;
-						vel.y = acc.y = 0;
-						onGround = true;
-					}
 				}
+//				else if (o instanceof Box) {
+//					if (vel.y > 0) {
+//						y = o.getY() - height;
+//						vel.y = acc.y = 0;
+//						onGround = true;
+//					}
+//				}
 			}
 			updateHitBox();
 		}
@@ -172,7 +178,7 @@ public class Player extends GameObject {
 			}
 		}
 
-		double range = 100;
+		int range = COLLISION_CHECKING_RANGE;
 		ArrayList<Rectangle> rectangles = World.tree.query(new Rectangle(getCenterX() - range, getCenterY() - range, range * 2, range * 2));
 
 		double friction = World.FRICTION;
@@ -189,8 +195,8 @@ public class Player extends GameObject {
 		updateHitBox();
 		collisionX(rectangles);
 		updateHitBox();
-
-		prevImage = image;
+		
+		ImageType prevImage = image;
 		determineImage();
 		if (prevImage != image) {
 			image.reset();
@@ -200,13 +206,16 @@ public class Player extends GameObject {
 
 	@Override
 	public void render(Graphics g, Camera camera) {
+		Graphics2D g2d = (Graphics2D)g;
 		double x = screenX(camera) + this.width / 2;
 		double y = screenY(camera) + this.height;
 		Resources.drawCentered(g, image.getImage(), (int)x, (int)(y - image.getImage().getHeight() / 2));
+//		g2d.setColor(Resources.playerColors[type][0]);
+//		g2d.drawRect(world.screenX(getCenterX())-COLLISION_CHECKING_RANGE, world.screenY(getCenterY())-COLLISION_CHECKING_RANGE, COLLISION_CHECKING_RANGE*2, COLLISION_CHECKING_RANGE*2);
 	}
 
 	@Override
 	public String toString() {
-		return "{X: " + this.x + ", Y: " + this.y + "}";
+		return "Player{X: " + this.x + ", Y: " + this.y + "}";
 	}
 }

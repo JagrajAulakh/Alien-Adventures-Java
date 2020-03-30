@@ -6,7 +6,7 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
-public class Window extends ScreenObject implements ObjectListener {
+public class Window extends ScreenObject {
 	
 	private ArrayList<ScreenObject> objects;
 	private Button xButton;
@@ -87,20 +87,5 @@ public class Window extends ScreenObject implements ObjectListener {
 		g.setColor(new Color(0, 0, 0, animationCounter * 3));
 		g.fillRect(0, 0, winSurf.getWidth(), winSurf.getHeight());
 		Resources.drawCentered(g, animationCounter == animationCounterMax ? winSurf : Resources.scale(winSurf, scale), Game.WIDTH / 2, Game.HEIGHT / 2);
-	}
-	
-	@Override
-	public void clicked(ScreenObject obj) {
-	
-	}
-	
-	@Override
-	public void hovered(ScreenObject obj) {
-	
-	}
-	
-	@Override
-	public void held(ScreenObject obj) {
-	
 	}
 }

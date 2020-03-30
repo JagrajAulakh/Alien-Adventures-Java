@@ -30,7 +30,7 @@ public class ParticleManager implements Manager {
 
 		for (Particle p:particles) {
 			p.update();
-			if (p.dead()) {
+			if (p.isDead()) {
 				remove(p);
 			}
 		}

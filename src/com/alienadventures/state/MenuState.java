@@ -21,7 +21,7 @@ public class MenuState implements GameState, ObjectListener {
 	private GameStateManager gsm;
 	private ParticleManager particles;
 	private ArrayList<ScreenObject> objects;
-	private ArrayList<Window> windows;
+	private WindowManager windows;
 	private ButtonManager buttons;
 	private boolean intro;
 	private int scrollCounter, h;
@@ -37,7 +37,7 @@ public class MenuState implements GameState, ObjectListener {
 		camera = new Camera();
 		particles = new ParticleManager();
 		objects = new ArrayList<ScreenObject>();
-		windows = new ArrayList<Window>();
+		windows = new WindowManager();
 		buttons = new ButtonManager();
 		buttons.addListener(this);
 		
@@ -64,7 +64,7 @@ public class MenuState implements GameState, ObjectListener {
 		objects.add(new Image(Resources.titleBanner, 13.5f, 0.5f));
 		buttons.add(new Button(20f, 8f, "START", 0, camera));
 		buttons.add(new Button(20f, 11f, "OPTIONS", 0, camera));
-		buttons.add(new Button(3f, 3f, " ", 2, camera));
+//		buttons.add(new Button(3f, 3f, " ", 2, camera));
 	}
 	
 	@Override
@@ -98,7 +98,7 @@ public class MenuState implements GameState, ObjectListener {
 			for (int i = 0; i < Math.random() * 8 + 2; i++) {
 				double x = Input.mx + camera.getOffsetX();
 				double y = Input.my + camera.getOffsetY();
-				particles.add(new Particle(x, y));
+				particles.add(new Particle(null, x, y));
 			}
 		}
 		
@@ -118,15 +118,11 @@ public class MenuState implements GameState, ObjectListener {
 		}
 		
 		particles.update();
-		if (windows.size() == 0) buttons.update();
 		for (ScreenObject obj : objects) {
 			obj.update();
 		}
-		for (int i = 0; i < windows.size(); i++) {
-			Window window = windows.get(i);
-			window.update();
-			if (window.isDead()) windows.remove(i);
-		}
+		if (windows.isEmpty()) buttons.update();
+		windows.update();
 	}
 	
 	@Override
@@ -154,13 +150,11 @@ public class MenuState implements GameState, ObjectListener {
 		}
 		
 		for (ScreenObject obj : objects) {
-			obj.render(g, camera);
+			obj.render(g2d, camera);
 		}
-		buttons.render(g, camera);
-		for (ScreenObject window : windows) {
-			window.render(g, camera);
-		}
-		particles.render(g, camera);
+		buttons.render(g2d, camera);
+		windows.render(g2d, camera);
+		particles.render(g2d, camera);
 
 //		Resources.drawCentered(g, LetterMaker.makeSentence("TEST SENT", 4), Game.WIDTH / 2, Game.HEIGHT / 2);
 

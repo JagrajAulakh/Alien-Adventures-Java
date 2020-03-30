@@ -15,6 +15,7 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Resources {
 	public static final double SCALE = 3;
@@ -24,28 +25,28 @@ public class Resources {
 	public static ArrayList<ImageType[]> playerImages;
 	public static Color[][] playerColors;
 
-	public static synchronized void load() throws IOException, LineUnavailableException, UnsupportedAudioFileException {
+	public static synchronized void load() throws IOException {
 		new LetterMaker();
-		fontSheet = ImageIO.read(new File("fonts/font1.png"));
-		menuBack = scale(ImageIO.read(new File("images/menu_back.png")), 2);
-		titleImage = scale(ImageIO.read(new File("images/title.png")), 3);
-		titleBanner = scale(ImageIO.read(new File("images/title_banner.png")), 3);
+		fontSheet = ImageIO.read(new File("assets/fonts/font1.png"));
+		menuBack = scale(ImageIO.read(new File("assets/images/menu_back.png")), 2);
+		titleImage = scale(ImageIO.read(new File("assets/images/title.png")), 3);
+		titleBanner = scale(ImageIO.read(new File("assets/images/title_banner.png")), 3);
 
-		buttonSheet = ImageIO.read(new File("images/sheets/button_sheet.png"));
-		ArrayList<int[]> buttonCo = Reader.getCo("data/sheets_cos/button_sheet_cos.txt");
+		buttonSheet = ImageIO.read(new File("assets/images/sheets/button_sheet.png"));
+		ArrayList<int[]> buttonCo = Reader.getCo("assets/data/sheets_cos/button_sheet_cos.txt");
 		buttonImages = new ArrayList<BufferedImage>();
 		for (int[] co : buttonCo) {
 			buttonImages.add(scale(getImage(buttonSheet, co), 4));
 		}
 
-		miscSheet = ImageIO.read(new File("images/sheets/misc_sheet.png"));
-		ArrayList<int[]> miscCo = Reader.getCo("data/sheets_cos/button_sheet_cos.txt");
+		miscSheet = ImageIO.read(new File("assets/images/sheets/misc_sheet.png"));
+		ArrayList<int[]> miscCo = Reader.getCo("assets/data/sheets_cos/button_sheet_cos.txt");
 		fireBallImage = scale(miscSheet.getSubimage(112, 80, 16, 16), 4);
 		boxImage = scale(getImage(miscSheet, new int[]{0, 192, 16, 16}), SCALE);
 
 		ArrayList<ImageType> playerImageList = new ArrayList<ImageType>();
-		playerSheet = ImageIO.read(new File("images/sheets/player_sheet.png"));
-		ArrayList<int[]> playerCo = Reader.getCo("data/sheets_cos/player_sheet_cos.txt");
+		playerSheet = ImageIO.read(new File("assets/images/sheets/player_sheet.png"));
+		ArrayList<int[]> playerCo = Reader.getCo("assets/data/sheets_cos/player_sheet_cos.txt");
 		for (int p = 0; p < 5; p++) {
 			int i = p * 16;
 			// 0 STILL
@@ -96,23 +97,23 @@ public class Resources {
 
 		playerColors[0][0] = new Color(107, 190, 0);
 		playerColors[0][1] = new Color(176, 250, 20);
-		playerColors[0][2] = new Color(70, 128, 0);
+		playerColors[0][2] = new Color(72, 127, 0);
 
 		playerColors[1][0] = new Color(0, 137, 220);
 		playerColors[1][1] = new Color(93, 210, 255);
-		playerColors[1][2] = new Color(70, 128, 0);
+		playerColors[1][2] = new Color(0, 81, 127);
 
 		playerColors[2][0] = new Color(197, 93, 219);
 		playerColors[2][1] = new Color(255, 171, 199);
-		playerColors[2][2] = new Color(70, 128, 0);
+		playerColors[2][2] = new Color(113, 43, 127);
 
 		playerColors[3][0] = new Color(240, 201, 0);
 		playerColors[3][1] = new Color(255, 239, 133);
-		playerColors[3][2] = new Color(70, 128, 0);
+		playerColors[3][2] = new Color(165, 137, 0);
 
 		playerColors[4][0] = new Color(190, 169, 106);
 		playerColors[4][1] = new Color(255, 209, 169);
-		playerColors[4][2] = new Color(70, 128, 0);
+		playerColors[4][2] = new Color(127, 112, 0);
 
 //		try { Thread.sleep(2000); } catch (InterruptedException e) { e.printStackTrace(); }
 	}
@@ -174,10 +175,6 @@ public class Resources {
 		g.drawImage(source, 0, 0, null);
 		g.dispose();
 		return b;
-	}
-
-	public static BufferedImage darken(BufferedImage source) {
-		return darken(source, 50);
 	}
 
 	public static BufferedImage darken(BufferedImage source, int amount) {

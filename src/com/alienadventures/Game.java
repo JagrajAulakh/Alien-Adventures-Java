@@ -29,12 +29,12 @@ public class Game extends Canvas {
 	public Game() {
 		load();
 		try {
-			fireballImage = Resources.getImage(ImageIO.read(new File("images/sheets/misc_sheet.png")), new int[]{112, 80, 16, 16});
+			fireballImage = Resources.getImage(ImageIO.read(new File("assets/images/sheets/misc_sheet.png")), new int[]{112, 80, 16, 16});
 			fireballImage = Resources.scale(fireballImage, 4);
 		} catch (IOException e) { e.printStackTrace(); }
 		frame = new JFrame("Alien Adventures");
 		try {
-			frame.setIconImage(ImageIO.read(new File("images/icon.png")));
+			frame.setIconImage(ImageIO.read(new File("assets/images/icon.png")));
 		} catch (IOException e) { e.printStackTrace(); }
 		Dimension d = new Dimension(WIDTH, HEIGHT);
 		setMinimumSize(d);

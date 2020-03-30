@@ -8,22 +8,30 @@ import com.alienadventures.World;
 import java.awt.*;
 
 public class Particle extends GameObject {
+	public static final int MIN_SIZE = 5;
+	public static final int MAX_SIZE = 10;
 	private int life;
 	private Color color;
 
-	public Particle(double x, double y) {
-		this(x, y, null);
+	public Particle(World world, double x, double y) {
+		this(world, x, y, null);
 	}
 
-	public Particle(double x, double y, int type) {
-		super(x, y, 10, 10);
+	public Particle(World world, double x, double y, int type) {
+		super(world, x, y);
+		int s = (int)(Math.random()*(MAX_SIZE-MIN_SIZE) + MIN_SIZE);
+		setWidth(s);
+		setHeight(s);
 		setVel(Math.random() * 10 - 5, Math.random() * 10 - 5);
 		life = randomLife();
 		color = makeColor(type);
 	}
 
-	public Particle(double x, double y, Color color) {
-		super(x, y, 10, 10);
+	public Particle(World world, double x, double y, Color color) {
+		super(world, x, y);
+		int s = (int)(Math.random()*(MAX_SIZE-MIN_SIZE) + MIN_SIZE);
+		setWidth(s);
+		setHeight(s);
 		setVel(Math.random() * 10 - 5, Math.random() * 10 - 5);
 		life = randomLife();
 		this.color = color;
@@ -44,7 +52,8 @@ public class Particle extends GameObject {
 		return c;
 	}
 
-	public boolean dead() {
+	@Override
+	public boolean isDead() {
 		return life <= 0;
 	}
 
@@ -64,6 +73,6 @@ public class Particle extends GameObject {
 	@Override
 	public void render(Graphics g, Camera camera) {
 		g.setColor(color);
-		g.fillRect((int)screenX(camera), (int)screenY(camera), (int)width, (int)height);
+		g.fillRect(screenX(camera), screenY(camera), (int)width, (int)height);
 	}
 }

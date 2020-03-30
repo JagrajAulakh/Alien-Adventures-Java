@@ -6,14 +6,12 @@ import com.alienadventures.input.Input;
 
 import static com.alienadventures.ui.ButtonManager.State;
 
-import java.applet.Applet;
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.io.File;
 
 
 public class Button extends ScreenObject {
-	public static final double SCALEMAX = 1.2;
+	public static final double ANIMATIONSCALEMAX = 1.2;
 	public static final int WIDTH = 32;
 	public static final int HEIGHT = 32;
 	
@@ -23,6 +21,11 @@ public class Button extends ScreenObject {
 	private Camera camera;
 	private Window window;
 	private double scaleCounter = 0, scaleFactor = 1;
+	
+	public Button(float x, float y, Camera camera) {
+		super(x*WIDTH, y*WIDTH);
+		this.camera = camera;
+	}
 	
 	public Button(float x, float y, String text, int type, Camera camera) {
 		this((int) (x * WIDTH), (int) (y * HEIGHT), text, type, camera);
@@ -119,7 +122,7 @@ public class Button extends ScreenObject {
 		} else if (state == State.HOVER) {
 			if (scaleCounter <= 50) {
 				scaleCounter++;
-				scaleFactor += (SCALEMAX - scaleFactor) / 10;
+				scaleFactor += (ANIMATIONSCALEMAX - scaleFactor) / 10;
 			}
 			Resources.drawCentered(g, Resources.scale(hoverImage, scaleFactor), screenX(camera) + hoverImage.getWidth() / 2, screenY(camera) + hoverImage.getHeight() / 2);
 		} else if (state == State.HELD) {

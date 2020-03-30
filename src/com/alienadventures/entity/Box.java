@@ -11,8 +11,8 @@ import java.awt.*;
 import java.util.ArrayList;
 
 public class Box extends GameObject {
-	public Box(double x, double y) {
-		super(x, y);
+	public Box(World world, double x, double y) {
+		super(world, x, y);
 		image = new SingleImage(Resources.boxImage);
 		setWidth(image.getImage().getWidth());
 		setHeight(image.getImage().getHeight());
@@ -51,7 +51,7 @@ public class Box extends GameObject {
 						}
 					}
 				} else if (o instanceof Box) {
-					vel.x = o.vel.x / World.FRICTION;
+					vel.x = o.vel.x*2;
 				}
 			}
 			updateHitBox();
@@ -80,6 +80,6 @@ public class Box extends GameObject {
 
 	@Override
 	public void render(Graphics g, Camera camera) {
-		g.drawImage(image.getImage(), (int)screenX(camera), (int)screenY(camera), null);
+		g.drawImage(image.getImage(), screenX(camera), screenY(camera), null);
 	}
 }

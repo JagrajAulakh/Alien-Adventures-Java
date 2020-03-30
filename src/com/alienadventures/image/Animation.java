@@ -46,7 +46,7 @@ public class Animation extends ImageType {
 		}
 	}
 
-	public BufferedImage getImage(int frame) {
+	public BufferedImage getFrame(int frame) {
 		return frames.get(frame);
 	}
 	@Override
