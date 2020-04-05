@@ -209,7 +209,7 @@ public class Player extends GameObject {
 		Graphics2D g2d = (Graphics2D)g;
 		double x = screenX(camera) + this.width / 2;
 		double y = screenY(camera) + this.height;
-		Resources.drawCentered(g, image.getImage(), (int)x, (int)(y - image.getImage().getHeight() / 2));
+		Resources.drawCentered(g2d, image.getImage(), (int)x, (int)(y - image.getImage().getHeight() / 2));
 //		g2d.setColor(Resources.playerColors[type][0]);
 //		g2d.drawRect(world.screenX(getCenterX())-COLLISION_CHECKING_RANGE, world.screenY(getCenterY())-COLLISION_CHECKING_RANGE, COLLISION_CHECKING_RANGE*2, COLLISION_CHECKING_RANGE*2);
 	}

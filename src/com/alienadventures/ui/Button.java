@@ -15,41 +15,33 @@ public abstract class Button extends ScreenObject {
 		HELD,
 		CLICKED
 	}
-	
+
 	public static final double ANIMATIONSCALEMAX = 1.2;
 	public static final int WIDTH = 32;
 	public static final int HEIGHT = 32;
-	
+
 	protected State state = State.NORMAL, prevState;
-	protected String text;
 	protected BufferedImage normalImage, hoverImage, clickedImage;
 	protected Camera camera;
 	protected Window window;
 	protected double scaleCounter = 0, scaleFactor = 1;
 	protected ObjectListener callback;
-	
+
 	public Button(float x, float y, Camera camera, ObjectListener callback) {
 		super(x * WIDTH, y * WIDTH);
 		this.camera = camera;
 		this.callback = callback;
 	}
-	
+
 	public Button(float x, float y, BufferedImage image, int type, Camera camera) {
-		this((int) (x * WIDTH), (int) (y * HEIGHT), image, type, camera);
+		this((int)(x * WIDTH), (int)(y * HEIGHT), image, type, camera);
 	}
-	
-	public Button(int x, int y, String text, int type, Camera camera) {
-		super(x, y, Resources.buttonImages.get(type * 3).getWidth(), Resources.buttonImages.get(type * 3).getHeight());
-		makeImages(type, LetterMaker.makeSentence(text, 2));
-		this.text = text;
-		this.camera = camera;
-	}
-	
+
 	public Button(int x, int y, BufferedImage image, int type, Camera camera) {
 		super(x, y, Resources.buttonImages.get(type * 3).getWidth(), Resources.buttonImages.get(type * 3).getHeight());
 		this.camera = camera;
 	}
-	
+
 //	public Button(float x, float y, String text, int type, Window window) {
 //		this((int) (x * WIDTH), (int) (y * HEIGHT), text, type, window);
 //	}
@@ -60,7 +52,7 @@ public abstract class Button extends ScreenObject {
 ////		makeImages(type, LetterMaker.makeSentence(text, 2));
 ////		this.text = text;
 ////	}
-	
+
 	protected void makeImages(int type, BufferedImage img) {
 		normalImage = Resources.copyImage(Resources.buttonImages.get(type * 3));
 		hoverImage = Resources.copyImage(Resources.buttonImages.get(type * 3 + 1));
@@ -77,11 +69,11 @@ public abstract class Button extends ScreenObject {
 			g.dispose();
 		}
 	}
-	
+
 	@Override
 	public void update() {
 		Camera camera = window == null ? this.camera : window.getWindowCamera();
-		Rectangle screenBounds = new Rectangle((int) (-camera.getOffsetX() + getX()), (int) (-camera.getOffsetY() + getY()), (int) getWidth(), (int) getHeight());
+		Rectangle screenBounds = new Rectangle(screenX(camera), screenY(camera), (int)getWidth(), (int)getHeight());
 		if (screenBounds.contains(Input.mx, Input.my)) {
 			if (Input.mousePressed(0)) {
 				state = State.HELD;
@@ -90,7 +82,7 @@ public abstract class Button extends ScreenObject {
 				state = State.HOVER;
 				if (callback != null) callback.hovered(this);
 			}
-			
+
 			if (prevState == State.HELD && Input.mouseUp(0)) {
 				state = State.CLICKED;
 				if (callback != null) callback.clicked(this);
@@ -99,31 +91,36 @@ public abstract class Button extends ScreenObject {
 			state = State.NORMAL;
 		}
 		prevState = state;
-	}
-	
-	public State getState() {
-		return state;
-	}
-	
-	public void setState(State s) {
-		state = s;
-	}
-	
-	@Override
-	public void render(Graphics g, Camera camera) {
+
 		if (state == State.NORMAL || state == State.CLICKED) {
 			scaleCounter = 0;
 			scaleFactor = 1;
-			g.drawImage(normalImage, screenX(camera), screenY(camera), null);
 		} else if (state == State.HOVER) {
 			if (scaleCounter <= 50) {
 				scaleCounter++;
-				scaleFactor += (ANIMATIONSCALEMAX - scaleFactor) / 10;
+				scaleFactor += (ANIMATIONSCALEMAX - scaleFactor) / 2;
 			}
-			Resources.drawCentered(g, Resources.scale(hoverImage, scaleFactor), screenX(camera) + hoverImage.getWidth() / 2, screenY(camera) + hoverImage.getHeight() / 2);
 		} else if (state == State.HELD) {
 			scaleCounter = 0;
 			scaleFactor = 1;
+		}
+	}
+
+	public State getState() {
+		return state;
+	}
+
+	public void setState(State s) {
+		state = s;
+	}
+
+	@Override
+	public void render(Graphics g, Camera camera) {
+		if (state == State.NORMAL || state == State.CLICKED) {
+			g.drawImage(normalImage, screenX(camera), screenY(camera), null);
+		} else if (state == State.HOVER) {
+			Resources.drawCentered(g, Resources.scale(hoverImage, scaleFactor), screenX(camera) + hoverImage.getWidth() / 2, screenY(camera) + hoverImage.getHeight() / 2);
+		} else if (state == State.HELD) {
 			g.drawImage(clickedImage, screenX(camera), screenY(camera), null);
 		}
 	}

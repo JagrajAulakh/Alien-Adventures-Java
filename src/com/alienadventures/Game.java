@@ -14,9 +14,9 @@ import java.io.IOException;
 public class Game extends Canvas {
 	public static final int WIDTH = 960;
 	public static final int HEIGHT = 640;
-	
+
 	private static final boolean RUNNINGLINUX = System.getProperty("os.name").toLowerCase().contains("linux");
-	
+
 	public static int frameCount = 0;
 	private GameLogic logic;
 	private JFrame frame;
@@ -31,11 +31,15 @@ public class Game extends Canvas {
 		try {
 			fireballImage = Resources.getImage(ImageIO.read(new File("assets/images/sheets/misc_sheet.png")), new int[]{112, 80, 16, 16});
 			fireballImage = Resources.scale(fireballImage, 4);
-		} catch (IOException e) { e.printStackTrace(); }
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 		frame = new JFrame("Alien Adventures");
 		try {
 			frame.setIconImage(ImageIO.read(new File("assets/images/icon.png")));
-		} catch (IOException e) { e.printStackTrace(); }
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 		Dimension d = new Dimension(WIDTH, HEIGHT);
 		setMinimumSize(d);
 		setPreferredSize(d);
@@ -99,8 +103,8 @@ public class Game extends Canvas {
 			}
 			frames++;
 
-			if (System.currentTimeMillis() - timer > 500) {
-				timer += 500;
+			if (System.currentTimeMillis() - timer > 1000) {
+				timer += 1000;
 				System.out.println("FPS: " + frames);
 				frames = 0;
 			}
@@ -122,11 +126,11 @@ public class Game extends Canvas {
 			return;
 		}
 		Graphics g = bs.getDrawGraphics();
-		
+
 		if (running) {
 			getToolkit().sync();
 		}
-		
+
 		if (loading) {
 			loadingAnimation(g);
 		} else {
@@ -136,7 +140,7 @@ public class Game extends Canvas {
 		g.dispose();
 		bs.show();
 	}
-	
+
 	public BufferedImage screenshot() {
 		BufferedImage img = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_ARGB);
 		paint(img.getGraphics());
@@ -148,7 +152,7 @@ public class Game extends Canvas {
 		g.fillRect(0, 0, WIDTH, HEIGHT);
 		Graphics2D g2d = (Graphics2D)g.create();
 
-		int o = (int)(Math.round(6 * Math.sin(Math.toRadians(frameCount*4))));
+		int o = (int)(Math.round(6 * Math.sin(Math.toRadians(frameCount * 4))));
 
 		// FIREBALL
 		final int shake = 2;
@@ -159,7 +163,9 @@ public class Game extends Canvas {
 
 		// LOADING LETTERS
 		try {
-			Resources.drawCentered(g, LetterMaker.makeSentence("LOADING..."), WIDTH /2 + WIDTH/6, HEIGHT - 60 + o);
-		} catch (NullPointerException e) { System.out.println("ERROR!"); }
+			Resources.drawCentered(g, LetterMaker.makeSentence("LOADING..."), WIDTH / 2 + WIDTH / 6, HEIGHT - 60 + o);
+		} catch (NullPointerException e) {
+			System.out.println("ERROR!");
+		}
 	}
 }

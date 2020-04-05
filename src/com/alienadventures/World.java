@@ -94,7 +94,7 @@ public class World {
 				tree.insert(new Rectangle(o.getX(), o.getY(), o.getWidth(), o.getHeight(), o));
 			}
 			player.update();
-			camera.centerOn(player, false);
+			camera.centerOn(player);
 		}
 	}
 	

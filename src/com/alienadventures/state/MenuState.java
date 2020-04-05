@@ -153,7 +153,9 @@ public class MenuState implements GameState, ObjectListener {
 			obj.render(g2d, camera);
 		}
 		buttons.render(g2d, camera);
+
 		windows.render(g2d, camera);
+
 		particles.render(g2d, camera);
 
 //		Resources.drawCentered(g, LetterMaker.makeSentence("TEST SENT", 4), Game.WIDTH / 2, Game.HEIGHT / 2);
